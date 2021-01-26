@@ -32,8 +32,20 @@ class CreateUserMaterialsTable extends Migration
                 ->default(0);
             $table->dateTime('published_time')
                 ->nullable();
-            $table->json('tags')->nullable();
-            $table->integer('views')->default(0);
+            $table->json('tags')
+                ->nullable()
+//                ->index()
+            ;
+            $table->string('slug')
+                ->unique()
+                ->index()
+            ;
+            $table->integer('views')
+                ->unsigned()
+                ->default(0);
+            $table->string('region_alias', 100)
+                ->nullable()
+                ->index();
             $table->timestamps();
         });
     }
