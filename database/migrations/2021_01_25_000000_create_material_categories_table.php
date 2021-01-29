@@ -16,6 +16,13 @@ class CreateMaterialCategoriesTable extends Migration
         Schema::create('material_categories', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('slug')
+                ->unique()
+                ->index()
+            ;
+            $table->boolean('special')
+                ->default(0)
+                ->index();
             $table->timestamps();
         });
     }
