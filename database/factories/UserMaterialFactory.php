@@ -30,7 +30,7 @@ class UserMaterialFactory extends Factory
             'long_title' => $this->faker->company,
             'content' => $this->faker->realText(1200),
             'published' => true,
-            'slug' => \Str::random(40),
+//            'slug' => \Str::random(40),
             'views' => rand(100, 1000000),
         ];
     }

@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
 
 /**
  * App\Models\MaterialCategory
@@ -28,7 +30,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  */
 class MaterialCategory extends Model
 {
-    use HasFactory;
+    use HasFactory, HasSlug;
 
     public static function table(): string
     {
@@ -38,5 +40,12 @@ class MaterialCategory extends Model
     public function materials(): HasMany
     {
         return $this->hasMany(UserMaterial::class, 'category_id', 'id');
+    }
+
+    public function getSlugOptions(): SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('name')
+            ->saveSlugsTo('slug');
     }
 }

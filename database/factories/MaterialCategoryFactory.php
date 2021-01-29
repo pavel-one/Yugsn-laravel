@@ -37,7 +37,7 @@ class MaterialCategoryFactory extends Factory
 
         return [
             'name' => $name,
-            'slug' => \Str::random(40),
+//            'slug' => \Str::random(40),
         ];
     }
 
