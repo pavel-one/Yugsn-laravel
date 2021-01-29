@@ -12,6 +12,18 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|MaterialCategory newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|MaterialCategory query()
  * @mixin \Eloquent
+ * @property int $id
+ * @property string $name
+ * @property string $slug
+ * @property int $special
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|MaterialCategory whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MaterialCategory whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MaterialCategory whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MaterialCategory whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MaterialCategory whereSpecial($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MaterialCategory whereUpdatedAt($value)
  */
 class MaterialCategory extends Model
 {
