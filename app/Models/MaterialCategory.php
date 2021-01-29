@@ -27,6 +27,8 @@ use Spatie\Sluggable\SlugOptions;
  * @method static \Illuminate\Database\Eloquent\Builder|MaterialCategory whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder|MaterialCategory whereSpecial($value)
  * @method static \Illuminate\Database\Eloquent\Builder|MaterialCategory whereUpdatedAt($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\UserMaterial[] $materials
+ * @property-read int|null $materials_count
  */
 class MaterialCategory extends Model
 {

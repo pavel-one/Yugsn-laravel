@@ -43,6 +43,8 @@ use Spatie\Sluggable\SlugOptions;
  * @method static \Illuminate\Database\Eloquent\Builder|UserMaterial whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|UserMaterial whereUserId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|UserMaterial whereViews($value)
+ * @property-read \App\Models\MaterialCategory $category
+ * @property-read \App\Models\User|null $user
  */
 class UserMaterial extends Model
 {
