@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\MaterialCategory;
 use App\Models\User;
+use App\Models\UserMaterial;
 use Database\Factories\MaterialCategoryFactory;
 use Illuminate\Database\Seeder;
 
@@ -20,6 +21,9 @@ class DatabaseSeeder extends Seeder
              ->create();
 
          MaterialCategory::factory(count(MaterialCategoryFactory::CATEGORY_NAMES))
+             ->create();
+
+         UserMaterial::factory(500)
              ->create();
     }
 }
