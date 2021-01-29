@@ -50,12 +50,12 @@ class UserMaterial extends Model
 
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'id', 'user_id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
     public function category(): BelongsTo
     {
-        return $this->belongsTo(MaterialCategory::class, 'id', 'category_id');
+        return $this->belongsTo(MaterialCategory::class, 'category_id', 'id');
     }
 
     public function getSlugOptions(): SlugOptions
