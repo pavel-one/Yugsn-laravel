@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * App\Models\MaterialCategory
@@ -32,5 +33,10 @@ class MaterialCategory extends Model
     public static function table(): string
     {
         return (new MaterialCategory)->getTable();
+    }
+
+    public function materials(): HasMany
+    {
+        return $this->hasMany(UserMaterial::class, 'category_id', 'id');
     }
 }
