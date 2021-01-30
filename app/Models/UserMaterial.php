@@ -12,10 +12,6 @@ use Spatie\Sluggable\SlugOptions;
 /**
  * App\Models\UserMaterial
  *
- * @method static \Illuminate\Database\Eloquent\Builder|UserMaterial newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|UserMaterial newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|UserMaterial query()
- * @mixin \Eloquent
  * @property int $id
  * @property int|null $user_id
  * @property int $category_id
@@ -27,9 +23,16 @@ use Spatie\Sluggable\SlugOptions;
  * @property mixed|null $tags
  * @property string $slug
  * @property int $views
- * @property string|null $region_alias
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property mixed|null $regions
+ * @property-read \App\Models\MaterialCategory $category
+ * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection|\Spatie\MediaLibrary\MediaCollections\Models\Media[] $media
+ * @property-read int|null $media_count
+ * @property-read \App\Models\User|null $user
+ * @method static \Illuminate\Database\Eloquent\Builder|UserMaterial newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|UserMaterial newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|UserMaterial query()
  * @method static \Illuminate\Database\Eloquent\Builder|UserMaterial whereCategoryId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|UserMaterial whereContent($value)
  * @method static \Illuminate\Database\Eloquent\Builder|UserMaterial whereCreatedAt($value)
@@ -37,19 +40,23 @@ use Spatie\Sluggable\SlugOptions;
  * @method static \Illuminate\Database\Eloquent\Builder|UserMaterial whereLongTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|UserMaterial wherePublished($value)
  * @method static \Illuminate\Database\Eloquent\Builder|UserMaterial wherePublishedTime($value)
- * @method static \Illuminate\Database\Eloquent\Builder|UserMaterial whereRegionAlias($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserMaterial whereRegions($value)
  * @method static \Illuminate\Database\Eloquent\Builder|UserMaterial whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder|UserMaterial whereTags($value)
  * @method static \Illuminate\Database\Eloquent\Builder|UserMaterial whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|UserMaterial whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|UserMaterial whereUserId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|UserMaterial whereViews($value)
- * @property-read \App\Models\MaterialCategory $category
- * @property-read \App\Models\User|null $user
+ * @mixin \Eloquent
  */
 class UserMaterial extends Model
 {
     use HasFactory, HasSlug, InteractsWithMedia;
+
+    public static function table(): string
+    {
+        return (new UserMaterial())->getTable();
+    }
 
     public function user(): BelongsTo
     {

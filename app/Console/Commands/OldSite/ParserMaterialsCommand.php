@@ -5,7 +5,7 @@ namespace App\Console\Commands\OldSite;
 use App\Console\Services\ParserService;
 use Illuminate\Console\Command;
 
-class ParserMaterials extends Command
+class ParserMaterialsCommand extends Command
 {
     /**
      * The name and signature of the console command.
@@ -20,19 +20,6 @@ class ParserMaterials extends Command
      * @var string
      */
     protected $description = 'Подтягивание категорий и материалов со старого сайта';
-    protected $service;
-
-    /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->service = new ParserService();
-
-        parent::__construct();
-    }
 
     /**
      * Execute the console command.
@@ -43,9 +30,13 @@ class ParserMaterials extends Command
     {
         $type = $this->choice('Что обновить?', [
             0 => ParserService::TYPE_MATERIAL,
-            1 => ParserService::TYPE_CATEGORIES
+            1 => ParserService::TYPE_REGIONS,
+            2 => ParserService::TYPE_ALL
         ], ParserService::TYPE_MATERIAL, 2);
 
-        dd($type);
+        $service = new ParserService($type);
+
+
+        $service->update($this);
     }
 }
