@@ -17,8 +17,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-//         User::factory(10)
-//             ->create();
+         User::factory(1)
+             ->create();
 
 //         MaterialCategory::factory(count(MaterialCategoryFactory::CATEGORY_NAMES))
 //             ->create();

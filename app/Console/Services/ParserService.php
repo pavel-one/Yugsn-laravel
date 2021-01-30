@@ -3,6 +3,7 @@
 namespace App\Console\Services;
 
 use App\Models\UserMaterial;
+use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
@@ -41,28 +42,38 @@ class ParserService
 
     public function parseMaterial(): ParserService
     {
+        $this->log('Начинаю парсить материалы');
         $start = microtime(true);
-        $response = Http::get($this->apiUrl);
+        $response = Http::get($this->apiUrl)->json();
         $end = round(microtime(true) - $start, 4);
 
         $this->log("Сервер ответил за: $end секунды");
 
-        $materials = json_decode($response->body(), true);
-
-//        dd($materials[2]);
-
-        foreach ($materials as $key => $material) {
-            $this->log('Сохраняю: ' . $material['pagetitle']);
+        $bar = $this->console->getOutput()->createProgressBar(count($response));
+        $bar->start();
+        foreach ($response as $material) {
+//            $this->log('Сохраняю: ' . $material['title']);
 
             UserMaterial::unguard();
-            $model = UserMaterial::create([
-                'title' => $material['pagetitle'] ?? 'Не задано',
+            UserMaterial::create([
+                'title' => $material['title'] ?? 'Не задано',
                 'user_id' => 1,
                 'category_id' => 1,
-                'long_title' => $material['pagetitle'] ?? 'не задано',
+                'long_title' => $material['long_title'] ?? 'не задано',
+                'slug' => $material['slug'],
+                'published' => (bool) $material['published'],
+                'regions' => ($material['regions'] === '') ? null : $material['regions'],
+                'views' => (int) $material['views'],
+                'created_at' => Carbon::createFromTimestamp($material['publishedon']),
+//                'updated_at' => Carbon::createFromTimestamp($material['publishedon']),
+                'content' => $this->getContent((int) $material['id']),
             ]);
             UserMaterial::reguard();
+
+            $bar->advance();
         }
+
+        $bar->finish();
 
         return $this;
     }
@@ -78,6 +89,11 @@ class ParserService
             ->parseMaterial();
 
         return $this;
+    }
+
+    private function getContent(int $id)
+    {
+        return Http::get($this->apiUrl.'?id='.$id)->body();
     }
 
     private function log(string $msg)
