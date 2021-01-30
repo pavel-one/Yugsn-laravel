@@ -22,8 +22,13 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Region whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Region whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Region whereUpdatedAt($value)
+ * @property int $region_category_id
+ * @method static \Illuminate\Database\Eloquent\Builder|Region whereRegionCategoryId($value)
  */
 class Region extends Model
 {
-    use HasFactory;
+    public static function table(): string
+    {
+        return (new self())->getTable();
+    }
 }

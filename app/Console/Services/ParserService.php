@@ -3,6 +3,8 @@
 namespace App\Console\Services;
 
 use App\Models\MaterialCategory;
+use App\Models\Region;
+use App\Models\RegionCategory;
 use App\Models\UserMaterial;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
@@ -13,6 +15,7 @@ class ParserService
 {
     private $apiUrl;
     private $currentTypeUpdate;
+
     /** @var Command */
     private $console;
 
@@ -55,7 +58,6 @@ class ParserService
 
             $bar->advance();
         }
-
         $bar->finish();
 
         return $this;
@@ -63,6 +65,27 @@ class ParserService
 
     public function parseRegions(): ParserService
     {
+        $this->log('Начинаю парсить регионы');
+
+        $response = Http::get($this->apiUrl.'?regions=1')->json();
+
+        $bar = $this->console->getOutput()->createProgressBar(count($response));
+        $bar->start();
+        foreach ($response as $region) {
+            if (Region::whereId([$region['id']])->exists()) {
+                continue;
+            }
+
+            $obj = new Region();
+            $obj->id = $region['id'];
+            $obj->name = $region['name'];
+            $obj->alias = $region['alias'];
+            $obj->region_category_id = $this->getRegionCategoryId($region['category_name']);
+            $obj->save();
+            $bar->advance();
+        }
+        $bar->finish();
+
         return $this;
     }
 
@@ -72,6 +95,13 @@ class ParserService
             ->parseMaterial();
 
         return $this;
+    }
+
+    private function getRegionCategoryId(string $categoryName): int
+    {
+        return RegionCategory::firstOrCreate([
+            'name' => $categoryName
+        ])->id;
     }
 
     private function formatMaterial(array $material): array
@@ -106,6 +136,7 @@ class ParserService
     private function log(string $msg)
     {
         if ($this->console instanceof Command) {
+            $this->console->newLine();
             $this->console->info($msg);
         }
 
