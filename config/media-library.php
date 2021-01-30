@@ -6,7 +6,7 @@ return [
      * The disk on which to store added files and derived images by default. Choose
      * one or more of the disks you've configured in config/filesystems.php.
      */
-    'disk_name' => env('MEDIA_DISK', 'public'),
+    'disk_name' => env('MEDIA_DISK', 'user'),
 
     /*
      * The maximum file size of an item in bytes.
@@ -144,7 +144,7 @@ return [
      * The engine that should perform the image conversions.
      * Should be either `gd` or `imagick`.
      */
-    'image_driver' => env('IMAGE_DRIVER', 'gd'),
+    'image_driver' => env('IMAGE_DRIVER', 'imagick'),
 
     /*
      * FFMPEG & FFProbe binaries paths, only used if you try to generate video
