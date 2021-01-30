@@ -53,6 +53,10 @@ class UserMaterial extends Model
 {
     use HasFactory, HasSlug, InteractsWithMedia;
 
+    protected $dates = [
+        'published_time',
+    ];
+
     public static function table(): string
     {
         return (new UserMaterial())->getTable();

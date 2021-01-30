@@ -2,6 +2,7 @@
 
 namespace App\Console\Services;
 
+use App\Models\MaterialCategory;
 use App\Models\UserMaterial;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
@@ -43,31 +44,13 @@ class ParserService
     public function parseMaterial(): ParserService
     {
         $this->log('Начинаю парсить материалы');
-        $start = microtime(true);
         $response = Http::get($this->apiUrl)->json();
-        $end = round(microtime(true) - $start, 4);
-
-        $this->log("Сервер ответил за: $end секунды");
 
         $bar = $this->console->getOutput()->createProgressBar(count($response));
         $bar->start();
         foreach ($response as $material) {
-//            $this->log('Сохраняю: ' . $material['title']);
-
             UserMaterial::unguard();
-            UserMaterial::create([
-                'title' => $material['title'] ?? 'Не задано',
-                'user_id' => 1,
-                'category_id' => 1,
-                'long_title' => $material['long_title'] ?? 'не задано',
-                'slug' => $material['slug'],
-                'published' => (bool) $material['published'],
-                'regions' => ($material['regions'] === '') ? null : $material['regions'],
-                'views' => (int) $material['views'],
-                'created_at' => Carbon::createFromTimestamp($material['publishedon']),
-//                'updated_at' => Carbon::createFromTimestamp($material['publishedon']),
-                'content' => $this->getContent((int) $material['id']),
-            ]);
+            UserMaterial::create($this->formatMaterial($material));
             UserMaterial::reguard();
 
             $bar->advance();
@@ -91,7 +74,31 @@ class ParserService
         return $this;
     }
 
-    private function getContent(int $id)
+    private function formatMaterial(array $material): array
+    {
+        return [
+            'title' => $material['title'] ?? 'Не задано',
+            'user_id' => 1,
+            'long_title' => $material['long_title'] ?? 'не задано',
+            'slug' => $material['slug'],
+            'published' => (bool) $material['published'],
+            'regions' => ($material['regions'] === '') ? null : $material['regions'],
+            'views' => (int) $material['views'],
+            'created_at' => Carbon::createFromTimestamp($material['createdon']),
+            'published_time' => Carbon::createFromTimestamp($material['publishedon']),
+            'content' => $this->getContent((int) $material['id']),
+            'category_id' => $this->createOrGetCategory($material['category_name'])
+        ];
+    }
+
+    private function createOrGetCategory(string $categoryName): int
+    {
+        return MaterialCategory::firstOrCreate([
+            'name' => $categoryName
+        ])->id;
+    }
+
+    private function getContent(int $id): string
     {
         return Http::get($this->apiUrl.'?id='.$id)->body();
     }
