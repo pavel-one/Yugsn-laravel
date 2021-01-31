@@ -1,11 +1,15 @@
-<?php
+<?php /** @noinspection PhpSuperClassIncompatibleWithInterfaceInspection */
 
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Spatie\Image\Exceptions\InvalidManipulation;
+use Spatie\Image\Manipulations;
+use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
@@ -49,9 +53,20 @@ use Spatie\Sluggable\SlugOptions;
  * @method static \Illuminate\Database\Eloquent\Builder|UserMaterial whereViews($value)
  * @mixin \Eloquent
  */
-class UserMaterial extends Model
+class UserMaterial extends Model implements HasMedia
 {
     use HasFactory, HasSlug, InteractsWithMedia;
+
+    public const THUMB_SIZES = [
+        'normal' => [360, 234],
+        'normal-big' => [623, 405],
+        'normal-horizon' => [458, 229],
+        'small-big' => [458, 492],
+        'small-vertical' => [263, 320],
+        'small-horizon' => [326, 236],
+        'mini' => [110, 130],
+        'mini-vertical' => [330, 291],
+    ];
 
     protected $dates = [
         'published_time',
@@ -72,10 +87,30 @@ class UserMaterial extends Model
         return $this->belongsTo(MaterialCategory::class, 'category_id', 'id');
     }
 
+    /**
+     * Создание алиаса статьи, при сохранении
+     *
+     * @return SlugOptions
+     */
     public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()
             ->generateSlugsFrom('title')
             ->saveSlugsTo('slug');
+    }
+
+    /**
+     * Создание миниатюры [Очередь]
+     *
+     * @param Media|null $media
+     * @throws InvalidManipulation
+     */
+    public function registerMediaConversions(Media $media = null): void
+    {
+        foreach (self::THUMB_SIZES as $name => $size) {
+            $this->addMediaConversion("thumb-$name")
+                ->fit(Manipulations::FIT_CROP, $size[0], $size[1])
+            ;
+        }
     }
 }

@@ -47,6 +47,11 @@ return [
             'root' => storage_path('app/user'),
         ],
 
+        'materials' => [
+            'driver' => 'local',
+            'root' => storage_path('app/materials'),
+        ],
+
     ],
 
     /*
