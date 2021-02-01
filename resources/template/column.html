@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8" />
+    <title>Колумнистика - Южная служба новостей</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/def.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="css/main.css" media="all" />
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <!--cookies toast styles-->
+    <style id="ctcc-css" type="text/css" media="screen">
+        #catapult-cookie-bar {
+            box-sizing: border-box;
+            max-height: 0;
+            opacity: 0;
+            z-index: 99999;
+            overflow: hidden;
+            color: #ddd;
+            position: fixed;
+            left: 20px;
+            bottom: 6%;
+            width: 300px;
+            background-color: #464646;
+        }
+
+        #catapult-cookie-bar a {
+            color: #fff;
+        }
+
+        #catapult-cookie-bar .x_close span {
+            background-color: ;
+        }
+
+        button#catapultCookie {
+            background: ;
+            color: ;
+            border: 0;
+            padding: 6px 9px;
+            border-radius: 3px;
+        }
+
+        #catapult-cookie-bar h3 {
+            color: #ddd;
+        }
+
+        .has-cookie-bar #catapult-cookie-bar {
+            opacity: 1;
+            max-height: 999px;
+            min-height: 30px;
+        }
+    </style>
+</head>
+
+<body
+    class="home blog blog-post-transparent-header-disable blog-small-page-width blog-enable-images-animations blog-enable-sticky-sidebar blog-enable-sticky-header blog-style-corners-rounded">
+    <div class="header-menu-bg menu_white header-menu-uppercase" role="navigation">
+        <div class="header-menu">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10">
+                        <div class="menu-top-menu-container-toggle" aria-label="Toggle menu"></div>
+                        <div class="menu-top-menu-container">
+                            <ul id="menu-top-menu-1" class="links">
+                                <li class="menu-item menu-item-type-post_type menu-item-object-page">
+                                    <a href="#">О нас</a>
+                                </li>
+                                <li class="menu-item menu-item-type-post_type menu-item-object-page">
+                                    <a href="#">Контакты</a>
+                                </li>
+                                <li class="menu-item menu-item-type-custom menu-item-object-custom">
+                                    <a target="_blank" href="#">Вход</a>
+                                </li>
+                                <li class="icon-email menu-item menu-item-type-custom menu-item-object-custom">
+                                    <a target="_blank" href="#">Подписка</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="right-socials header-right col-md-2">
+                        <div class="social-icons-wrapper">
+                            <a href="#" target="_blank" class="a-vk">
+                                <i class="fa fa-vk"></i>
+                            </a>
+                            <a href="#" target="_blank" class="a-odnoklassniki">
+                                <i class="fa fa-odnoklassniki"></i>
+                            </a>
+                            <a href="#" target="_blank" class="a-facebook">
+                                <i class="fa fa-facebook"></i>
+                            </a>
+                            <a href="#" target="_blank" class="a-twitter">
+                                <i class="fa fa-twitter"></i>
+                            </a>
+                            <a href="#" target="_blank" class="a-instagram">
+                                <i class="fa fa-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- menu-->
+    <header class="main-header clearfix sticky-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="header-left">
+                        <div class="mainmenu-mobile-toggle" aria-label="Toggle menu"><i class="fa fa-bars"
+                                aria-hidden="true"></i></div>
+                        <div class="logo">
+                            <a class="logo-link" href="/">
+                                <img srcset="img/logo_2x.png 2x" src="img/logo.png" alt="южная служба новостей лого"
+                                    class="regular-logo">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="header-center">
+                        <div class="mainmenu mainmenu-none mainmenu-regularfont mainmenu-noarrow clearfix"
+                            role="navigation">
+                            <div id="navbar" class="navbar navbar-default clearfix mgt-mega-menu">
+                                <div class="navbar-inner">
+                                    <div class="container">
+                                        <div class="navbar-toggle btn btn-grey" data-toggle="collapse"
+                                            data-target=".collapse">
+                                            Menu
+                                        </div>
+                                        <div class="navbar-center-wrapper">
+                                            <div class="navbar-collapse collapse">
+                                                <ul id="menu-main-menu-2" class="nav">
+                                                    <li id="mgt-menu-item-104"
+                                                        class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home current-menu-ancestor menu-item-has-children">
+                                                        <a href="#">Главная</a>
+                                                    </li>
+                                                    <li id="mgt-menu-item-105"
+                                                        class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children">
+                                                        <a href="#">Рубрики</a>
+                                                        <ul class="sub-menu  megamenu-column-1 level-0">
+                                                            <li id="mgt-menu-item-443"
+                                                                class="menu-item menu-item-type-custom menu-item-object-custom">
+                                                                <a href="#">Власть</a>
+                                                            </li>
+                                                            <li id="mgt-menu-item-444"
+                                                                class="menu-item menu-item-type-custom menu-item-object-custom">
+                                                                <a href="#">Политика</a>
+                                                            </li>
+                                                            <li id="mgt-menu-item-455"
+                                                                class="menu-item menu-item-type-custom menu-item-object-custom">
+                                                                <a href="#">Экономика</a>
+                                                            </li>
+                                                            <li id="mgt-menu-item-455"
+                                                                class="menu-item menu-item-type-custom menu-item-object-custom">
+                                                                <a href="#">Происшествия</a>
+                                                            </li>
+                                                            <li id="mgt-menu-item-455"
+                                                                class="menu-item menu-item-type-custom menu-item-object-custom">
+                                                                <a href="#">Криминал</a>
+                                                            </li>
+                                                            <li id="mgt-menu-item-455"
+                                                                class="menu-item menu-item-type-custom menu-item-object-custom">
+                                                                <a href="#">Общество</a>
+                                                            </li>
+                                                            <li id="mgt-menu-item-455"
+                                                                class="menu-item menu-item-type-custom menu-item-object-custom">
+                                                                <a href="#">Культура</a>
+                                                            </li>
+                                                            <li id="mgt-menu-item-455"
+                                                                class="menu-item menu-item-type-custom menu-item-object-custom">
+                                                                <a href="#">Спорт</a>
+                                                            </li>
+                                                            <li id="mgt-menu-item-455"
+                                                                class="menu-item menu-item-type-custom menu-item-object-custom">
+                                                                <a href="#">Наука</a>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                    <li id="mgt-menu-item-105"
+                                                        class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children">
+                                                        <a href="#">Регионы</a>
+                                                        <ul class="sub-menu  megamenu-column-1 level-0">
+                                                            <li id="mgt-menu-item-443"
+                                                                class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children">
+                                                                <a href="#">ЮФО</a>
+                                                                <ul class="sub-menu  level-1">
+                                                                    <li id="mgt-menu-item-536"
+                                                                        class="menu-item menu-item-type-custom menu-item-object-custom">
+                                                                        <a href="#">Адыгея</a></li>
+                                                                    <li id="mgt-menu-item-535"
+                                                                        class="menu-item menu-item-type-custom menu-item-object-custom">
+                                                                        <a href="#">Астраханская область</a></li>
+                                                                    <li id="mgt-menu-item-532"
+                                                                        class="menu-item menu-item-type-custom menu-item-object-custom">
+                                                                        <a href="#">Волгоградская область</a></li>
+                                                                    <li id="mgt-menu-item-537"
+                                                                        class="menu-item menu-item-type-custom menu-item-object-custom">
+                                                                        <a href="#">Калмыкия</a></li>
+                                                                    <li id="mgt-menu-item-533"
+                                                                        class="menu-item menu-item-type-custom menu-item-object-custom">
+                                                                        <a href="#">Краснодарский край</a></li>
+                                                                    <li id="mgt-menu-item-571"
+                                                                        class="menu-item menu-item-type-custom menu-item-object-custom">
+                                                                        <a href="#">Крым</a></li>
+                                                                    <li id="mgt-menu-item-816"
+                                                                        class="menu-item menu-item-type-post_type menu-item-object-post">
+                                                                        <a href="#">Ростовская область</a></li>
+                                                                    <li id="mgt-menu-item-449"
+                                                                        class="menu-item menu-item-type-post_type menu-item-object-post">
+                                                                        <a href="#">Севастополь</a></li>
+                                                                </ul>
+                                                            </li>
+                                                            <li id="mgt-menu-item-444"
+                                                                class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children">
+                                                                <a href="#">СКФО</a>
+                                                                <ul class="sub-menu  level-1">
+                                                                    <li id="mgt-menu-item-445"
+                                                                        class="menu-item menu-item-type-post_type menu-item-object-page">
+                                                                        <a href="#">Дагестан</a></li>
+                                                                    <li id="mgt-menu-item-446"
+                                                                        class="menu-item menu-item-type-post_type menu-item-object-page">
+                                                                        <a href="#">Ингушетия</a></li>
+                                                                    <li id="mgt-menu-item-447"
+                                                                        class="menu-item menu-item-type-post_type menu-item-object-page">
+                                                                        <a href="#">Кабардино-Балкария</a></li>
+                                                                    <li id="mgt-menu-item-448"
+                                                                        class="menu-item menu-item-type-post_type menu-item-object-page">
+                                                                        <a href="#">Карачаево-Черкесия</a></li>
+                                                                    <li id="mgt-menu-item-484"
+                                                                        class="menu-item menu-item-type-custom menu-item-object-custom">
+                                                                        <a href="#">Северная Осетия</a></li>
+                                                                    <li id="mgt-menu-item-483"
+                                                                        class="menu-item menu-item-type-custom menu-item-object-custom">
+                                                                        <a href="#">Ставропольский край</a></li>
+                                                                    <li id="mgt-menu-item-483"
+                                                                        class="menu-item menu-item-type-custom menu-item-object-custom">
+                                                                        <a href="#">Чечня</a></li>
+                                                                </ul>
+                                                            </li>
+                                                            <li id="mgt-menu-item-455"
+                                                                class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children">
+                                                                <a href="#">Страны</a>
+                                                                <ul class="sub-menu  level-1">
+                                                                    <li id="mgt-menu-item-460"
+                                                                        class="menu-item menu-item-type-custom menu-item-object-custom">
+                                                                        <a href="#">Абхазия</a></li>
+                                                                    <li id="mgt-menu-item-461"
+                                                                        class="menu-item menu-item-type-custom menu-item-object-custom">
+                                                                        <a href="#">Азербайджан</a></li>
+                                                                    <li id="mgt-menu-item-456"
+                                                                        class="menu-item menu-item-type-custom menu-item-object-custom">
+                                                                        <a href="#">Южная Осетия</a></li>
+                                                                </ul>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                    <li id="mgt-menu-item-106"
+                                                        class="menu-item menu-item-type-taxonomy menu-item-object-category mgt-menu-fullwidth-inside menu-item-multicolumn menu-item-has-children">
+                                                        <a href="#">
+                                                            Новости
+                                                            <sup style="background-color: #db564f"
+                                                                style="background-color: #db564f">Hot</sup>
+                                                        </a>
+                                                        <ul
+                                                            class="sub-menu sidebar sidebar-inside  megamenu-column-1 mgt-menu-fullwidth level-0">
+                                                            <li id="saxon-list-posts-6"
+                                                                class="widget widget_saxon_list_entries">
+                                                                <h2 class="widgettitle">Новости</h2>
+                                                                <ul>
+                                                                    <li class="template-postsmasonry1-2">
+                                                                        <div class="saxon-postsmasonry1-post saxon-postsmasonry1_2-post saxon-post format- aos-init aos-animate"
+                                                                            data-aos="fade-up">
+                                                                            <div class="saxon-post-image-wrapper"><a
+                                                                                    href="#">
+                                                                                    <div class="saxon-post-image"
+                                                                                        style="background-image: url(http://wp.wp-preview.com/saxon/saxon-3/wp-content/uploads/2018/11/saxon-003-005-1140x694.jpg);"
+                                                                                        style="background-image: url(http://wp.wp-preview.com/saxon/saxon-3/wp-content/uploads/2018/11/saxon-003-005-1140x694.jpg);">
+                                                                                    </div>
+                                                                                </a>
+                                                                            </div>
+                                                                            <div class="saxon-post-details">
+                                                                                <h3 class="post-title"><a href="#">Julian
+                                                                                        Assange charged in US, court
+                                                                                        document
+                                                                                        accidentally reveals</a></h3>
+                                                                                <div class="post-date">26 октября 2018
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </li>
+                                                                    <li class="template-postsmasonry1-2">
+                                                                        <div class="saxon-postsmasonry1-post saxon-postsmasonry1_2-post saxon-post format- aos-init aos-animate"
+                                                                            data-aos="fade-up">
+                                                                            <div class="saxon-post-image-wrapper"><a
+                                                                                    href="#">
+                                                                                    <div class="saxon-post-image"
+                                                                                        style="background-image: url(http://wp.wp-preview.com/saxon/saxon-3/wp-content/uploads/2018/11/saxon-003-015-1140x694.jpg);"
+                                                                                        style="background-image: url(http://wp.wp-preview.com/saxon/saxon-3/wp-content/uploads/2018/11/saxon-003-015-1140x694.jpg);">
+                                                                                    </div>
+                                                                                </a>
+                                                                            </div>
+                                                                            <div class="saxon-post-details">
+                                                                                <h3 class="post-title"><a href="#">How
+                                                                                        to explore the Republic of
+                                                                                        Ireland, guided
+                                                                                        entirely by local advice</a>
+                                                                                </h3>
+                                                                                <div class="post-date">26 октября 2018
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </li>
+                                                                    <li class="template-postsmasonry1-2">
+                                                                        <div class="saxon-postsmasonry1-post saxon-postsmasonry1_2-post saxon-post format-video aos-init aos-animate"
+                                                                            data-aos="fade-up">
+                                                                            <div class="saxon-post-image-wrapper"><a
+                                                                                    href="#">
+                                                                                    <div class="saxon-post-image"
+                                                                                        style="background-image: url(http://wp.wp-preview.com/saxon/saxon-3/wp-content/uploads/2018/11/saxon-003-002-1140x694.jpg);"
+                                                                                        style="background-image: url(http://wp.wp-preview.com/saxon/saxon-3/wp-content/uploads/2018/11/saxon-003-002-1140x694.jpg);">
+                                                                                    </div>
+                                                                                </a>
+                                                                            </div>
+                                                                            <div class="saxon-post-details">
+                                                                                <h3 class="post-title"><a href="#">Next
+                                                                                        Stop for Democrats: 2020</a>
+                                                                                </h3>
+                                                                                <div class="post-date">26 октября 2018
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </li>
+                                                                    <li class="template-postsmasonry1-2">
+                                                                        <div class="saxon-postsmasonry1-post saxon-postsmasonry1_2-post saxon-post format- aos-init aos-animate"
+                                                                            data-aos="fade-up">
+                                                                            <div class="saxon-post-image-wrapper"><a
+                                                                                    href="#">
+                                                                                    <div class="saxon-post-image"
+                                                                                        style="background-image: url(http://wp.wp-preview.com/saxon/saxon-3/wp-content/uploads/2018/11/saxon-003-011-1140x694.jpg);"
+                                                                                        style="background-image: url(http://wp.wp-preview.com/saxon/saxon-3/wp-content/uploads/2018/11/saxon-003-011-1140x694.jpg);">
+                                                                                    </div>
+                                                                                </a>
+                                                                            </div>
+                                                                            <div class="saxon-post-details">
+                                                                                <h3 class="post-title"><a href="#">Recount
+                                                                                        Ordered in Florida Senate Race
+                                                                                        as Governor’s
+                                                                                        Contest Nears End</a></h3>
+                                                                                <div class="post-date">26 октября 2018
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </li>
+                                                                </ul>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                    <li id="mgt-menu-item-326"
+                                                        class="menu-item menu-item-type-post_type menu-item-object-page">
+                                                        <a href="#">Спецпроекты</a>
+                                                    </li>
+                                                    <li id="mgt-menu-item-325"
+                                                        class="menu-item menu-item-type-post_type menu-item-object-page">
+                                                        <a href="#">Колумнистика</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="header-right">
+                        <div class="search-toggle-wrapper search-header">
+                            <form method="get" role="search" id="searchform_p" class="searchform" action="">
+                                <input type="search" aria-label="Search" class="field" name="s" value="" id="s_p"
+                                    placeholder="Type keyword(s) here…">
+                                <input type="submit" class="submit btn" id="searchsubmit_p" value="Search">
+                            </form>
+                            <a class="search-toggle-btn" aria-label="Search toggle"><i class="fa fa-search"
+                                    aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!--main content-->
+    <div class="content-block">
+        <div class="saxon-block saxon-blog-block-wrapper page-container container">
+            <div class="row">
+                <div class="col-md-12 saxon-block-title">
+                    <h3>Колумнистика</h3>
+                </div>
+                <div class="col-md-8">
+                    <div class="blog-posts-list blog-layout-masonry" id="content"
+                        style="position: relative; height: 2498.78px;">
+
+
+                        <div class="blog-post saxon-block saxon-masonry-post"
+                            style="position: absolute; left: 0px; top: 0px;">
+                            <article id="post-49"
+                                class="post-49 post type-post status-publish format-gallery has-post-thumbnail hentry category-sport tag-business tag-finance tag-phones tag-technology post_format-post-format-gallery">
+                                <div class="saxon-grid-info-post saxon-masonry-post saxon-post format-gallery">
+                                    <div class="saxon-post-image-wrapper"><a
+                                            href="http://wp.wp-preview.com/saxon/saxon-3/2018/10/26/a-comprehensive-guide-for-the-gutenberg-wordpress-editor/">
+                                            <div class="saxon-post-image"><img
+                                                    src="http://wp.wp-preview.com/saxon/saxon-3/wp-content/uploads/2018/11/saxon-003-009-360x315.jpg"
+                                                    alt="Trump to Raise North Korea Sanctions With Chinese Leader, Pence Says">
+                                            </div>
+                                        </a>
+                                        <div class="post-categories">
+                                            <a href="#region-page" class="mark region">Регион</a>
+                                        </div>
+                                    </div>
+                                    <div class="saxon-post-details">
+
+                                        <h3 class="post-title"><a
+                                                href="http://wp.wp-preview.com/saxon/saxon-3/2018/10/26/a-comprehensive-guide-for-the-gutenberg-wordpress-editor/">Trump
+                                                to Raise North Korea Sanctions With Chinese Leader, Pence Says</a></h3>
+                                        <div class="post-date">26 октября 2018</div>
+                                    </div>
+                                    <div class="post-excerpt">The true power of motion can be seen in mobile
+                                        experiences. A mobile app without motion is just a sequence of independent
+                                        screens. But when designers introduce motion, something magical happens – a
+                                        design comes alive – an app becomes an interactive story that can
+                                        engageusers.The feedback provided by a system is…</div>
+
+                                </div>
+                            </article>
+                        </div>
+
+
+                        <div class="blog-post saxon-block saxon-masonry-post"
+                            style="position: absolute; left: 390px; top: 0px;">
+                            <article id="post-43"
+                                class="post-43 post type-post status-publish format-video has-post-thumbnail hentry category-lifestyle category-politics tag-business tag-finance tag-phones tag-technology post_format-post-format-video">
+                                <div class="saxon-grid-info-post saxon-masonry-post saxon-post format-video">
+                                    <div class="saxon-post-image-wrapper"><a
+                                            href="http://wp.wp-preview.com/saxon/saxon-3/2018/10/26/adobe-xd-new-features-voice-prototyping-and-much-more/">
+                                            <div class="saxon-post-image"><img
+                                                    src="http://wp.wp-preview.com/saxon/saxon-3/wp-content/uploads/2018/11/saxon-003-002-360x240.jpg"
+                                                    alt="Next Stop for Democrats: 2020">
+                                            </div>
+                                        </a>
+                                        <div class="post-categories">
+                                            <a href="#region-page" class="mark region">Регион</a>
+                                        </div>
+                                    </div>
+                                    <div class="saxon-post-details">
+
+                                        <h3 class="post-title"><a
+                                                href="http://wp.wp-preview.com/saxon/saxon-3/2018/10/26/adobe-xd-new-features-voice-prototyping-and-much-more/">Next
+                                                Stop for Democrats: 2020</a></h3>
+                                        <div class="post-date">26 октября 2018</div>
+                                    </div>
+                                    <div class="post-excerpt">Certainly, they are not an answer to everything. The key
+                                        feature of a website generator lies in universality. In principle, they should
+                                        meet the requirements and expectations of the majority. When it comes to
+                                        situations when you require something special or unique, this isn’t the option
+                                        for you. What’s more, often the…</div>
+
+                                </div>
+                            </article>
+                        </div>
+                        <div class="blog-post saxon-block saxon-masonry-post"
+                            style="position: absolute; left: 390px; top: 640px;">
+                            <article id="post-39"
+                                class="post-39 post type-post status-publish format-standard has-post-thumbnail hentry category-lifestyle tag-business tag-finance tag-gadgets tag-phones tag-technology">
+                                <div class="saxon-grid-info-post saxon-masonry-post saxon-post format-">
+                                    <div class="saxon-post-image-wrapper"><a
+                                            href="http://wp.wp-preview.com/saxon/saxon-3/2018/10/26/ios-12-for-iphone-and-ipad-50-tweaks-6-home-runs/">
+                                            <div class="saxon-post-image"><img
+                                                    src="http://wp.wp-preview.com/saxon/saxon-3/wp-content/uploads/2018/11/saxon-003-014-360x540.jpg"
+                                                    alt="19 Vogue Editors Share Their Ideal Holiday Travel Outfits">
+                                            </div>
+                                        </a>
+                                        <div class="post-categories">
+                                            <a href="#region-page" class="mark region">Регион</a>
+                                        </div>
+                                    </div>
+                                    <div class="saxon-post-details">
+                                        <h3 class="post-title"><a
+                                                href="http://wp.wp-preview.com/saxon/saxon-3/2018/10/26/ios-12-for-iphone-and-ipad-50-tweaks-6-home-runs/">19
+                                                Vogue Editors Share Their Ideal Holiday Travel Outfits</a></h3>
+                                        <div class="post-date">26 октября 2018</div>
+                                    </div>
+                                    <div class="post-excerpt">For example, after creating a portal, the host will invite
+                                        collaborators that can join the session. As the host cycle via files, guest can
+                                        make edits or spectate the active workspace. After entering a portal,
+                                        collaborators get their cursor so that everyone can type in the same time.
+                                        Thankfully, only the host can save…</div>
+                                </div>
+                            </article>
+                        </div>
+                        <div class="blog-post saxon-block saxon-masonry-post"
+                            style="position: absolute; left: 0px; top: 775px;">
+                            <article id="post-34"
+                                class="post-34 post type-post status-publish format-standard has-post-thumbnail hentry category-finance category-politics tag-business tag-design tag-finance tag-phones tag-technology">
+                                <div class="saxon-grid-info-post saxon-masonry-post saxon-post format-">
+                                    <div class="saxon-post-image-wrapper"><a
+                                            href="http://wp.wp-preview.com/saxon/saxon-3/2018/10/26/as-tether-flails-cryptocurrency-exchanges-launch-rival-stablecoins/">
+                                            <div class="saxon-post-image"><img
+                                                    src="http://wp.wp-preview.com/saxon/saxon-3/wp-content/uploads/2018/10/saxon-00012-360x540.jpg"
+                                                    alt="Cryptocurrency exchanges launch rival stablecoins"></div>
+                                        </a>
+                                        <div class="post-categories">
+                                            <a href="#region-page" class="mark region">Регион</a>
+                                        </div>
+                                    </div>
+                                    <div class="saxon-post-details">
+                                        <h3 class="post-title"><a
+                                                href="http://wp.wp-preview.com/saxon/saxon-3/2018/10/26/as-tether-flails-cryptocurrency-exchanges-launch-rival-stablecoins/">Cryptocurrency
+                                                exchanges launch rival stablecoins</a></h3>
+                                        <div class="post-date">26 октября 2018</div>
+                                    </div>
+                                    <div class="post-excerpt">When designers create products, they tell stories to
+                                        users. Designers have a lot of tools to make a story more interesting. Motion
+                                        design is one of the most powerful tools designers have. The true power of
+                                        motion can be seen in mobile experiences. A mobile app without motion is just a
+                                        sequence of independent screens. But when…</div>
+                                </div>
+                            </article>
+                        </div>
+                        <div class="blog-post saxon-block saxon-masonry-post"
+                            style="position: absolute; left: 390px; top: 1611px;">
+                            <article id="post-28"
+                                class="post-28 post type-post status-publish format-standard has-post-thumbnail hentry category-lifestyle category-sport tag-business tag-design tag-marketing tag-phones tag-technology">
+                                <div class="saxon-grid-info-post saxon-masonry-post saxon-post format-">
+                                    <div class="saxon-post-image-wrapper"><a
+                                            href="http://wp.wp-preview.com/saxon/saxon-3/2018/10/26/amazon-shares-fall-as-record-profits-are-offset-by-conservative-holiday-forecasts/">
+                                            <div class="saxon-post-image"><img
+                                                    src="http://wp.wp-preview.com/saxon/saxon-3/wp-content/uploads/2018/11/saxon-003-004-360x429.jpg"
+                                                    alt="9 Top Teachers Share Their Go-To Yoga Mantras"></div>
+                                        </a>
+                                        <div class="post-categories">
+                                            <a href="#region-page" class="mark region">Регион</a>
+                                        </div>
+                                    </div>
+                                    <div class="saxon-post-details">
+
+                                        <h3 class="post-title"><a
+                                                href="http://wp.wp-preview.com/saxon/saxon-3/2018/10/26/amazon-shares-fall-as-record-profits-are-offset-by-conservative-holiday-forecasts/">9
+                                                Top Teachers Share Their Go-To Yoga Mantras</a></h3>
+                                        <div class="post-date">26 октября 2018</div>
+                                    </div>
+                                    <div class="post-excerpt">A website today receives a large chunk of its traffic from
+                                        evergreen browsers — most of which have good support for ES6+, new JavaScript
+                                        standards, new web platform APIs and CSS attributes. However, legacy browsers
+                                        still need to be supported for the near future — their usage share is large
+                                        enough not to be ignored, depending…</div>
+                                </div>
+                            </article>
+                        </div>
+                        <div class="blog-post saxon-block saxon-masonry-post"
+                            style="position: absolute; left: 0px; top: 1746px;">
+                            <article id="post-283"
+                                class="post-283 post type-post status-publish format-standard has-post-thumbnail hentry category-lifestyle tag-business tag-design tag-finance tag-phones tag-technology">
+                                <div class="saxon-grid-info-post saxon-masonry-post saxon-post format-">
+                                    <div class="saxon-post-image-wrapper"><a
+                                            href="http://wp.wp-preview.com/saxon/saxon-3/2018/10/26/how-to-boost-mobile-conversions-on-your-clients-websites/">
+                                            <div class="saxon-post-image"><img
+                                                    src="http://wp.wp-preview.com/saxon/saxon-3/wp-content/uploads/2018/11/saxon-003-010-360x240.jpg"
+                                                    alt="Can New York City’s Mayor Be an Amazon Booster and Still Be Progressive?">
+                                            </div>
+                                        </a>
+                                        <div class="post-categories">
+                                            <a href="#region-page" class="mark region">Регион</a>
+                                        </div>
+                                    </div>
+                                    <div class="saxon-post-details">
+                                        <h3 class="post-title"><a
+                                                href="http://wp.wp-preview.com/saxon/saxon-3/2018/10/26/how-to-boost-mobile-conversions-on-your-clients-websites/">Can
+                                                New York City’s Mayor Be an Amazon Booster and Still Be Progressive?</a>
+                                        </h3>
+                                        <div class="post-date">26 октября 2018</div>
+                                    </div>
+                                    <div class="post-excerpt">After all, if a customer has to go through a million of
+                                        steps to send you money, they will probably just giveup.It is a sort of a
+                                        decider: whether your readers will be back or ditch you and your company. But
+                                        make sure that every email newsletter looks pleasing and
+                                        isunobtrusive.Thankfully, only the…</div>
+
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                    <nav id="nav-below" class="navigation-paging">
+                        <div class="clear"></div>
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-12 nav-pagenavi">
+                                    <div class="wp-pagenavi" role="navigation">
+                                        <span class="pages">Page 2 of 3</span><a class="previouspostslink" rel="prev"
+                                            href="http://wp.wp-preview.com/saxon/saxon-3/?blog_layout=masonry&amp;blog_sidebar_position=right">Предыдущая</a><a
+                                            class="page smaller" title="Page 1"
+                                            href="http://wp.wp-preview.com/saxon/saxon-3/?blog_layout=masonry&amp;blog_sidebar_position=right">1</a><span
+                                            aria-current="page" class="current">2</span><a class="page larger"
+                                            title="Page 3"
+                                            href="http://wp.wp-preview.com/saxon/saxon-3/page/3/?blog_layout=masonry&amp;blog_sidebar_position=right">3</a><a
+                                            class="nextpostslink" rel="next"
+                                            href="http://wp.wp-preview.com/saxon/saxon-3/page/3/?blog_layout=masonry&amp;blog_sidebar_position=right">Следующая</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+                <div class="col-md-4 main-sidebar sidebar sidebar-right aos-init aos-animate" data-aos="fade-up"
+                    role="complementary">
+                    <ul id="main-sidebar">
+                        <li id="saxon-list-posts-4" class="widget widget_saxon_list_entries">
+                            <h2 class="widgettitle">
+                                Самое обсуждаемое
+                            </h2>
+                            <ul>
+                                <li class="template-shortline">
+                                    <div class="saxon-shortline-post saxon-post aos-init aos-animate"
+                                        data-aos="fade-up">
+                                        <div class="saxon-post-image-wrapper">
+                                            <a href="#">
+                                                <div class="saxon-post-image"
+                                                    style="background-image: url(http://wp.wp-preview.com/saxon/saxon-3/wp-content/uploads/2018/11/saxon-003-015-110x90.jpg);"
+                                                    style="background-image: url(http://wp.wp-preview.com/saxon/saxon-3/wp-content/uploads/2018/11/saxon-003-015-110x90.jpg);">
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="saxon-post-details">
+                                            <div class="post-categories">
+                                                <a href="#region-page" class="mark region">Регион</a>
+                                            </div>
+                                            <h3 class="post-title">
+                                                <a href="#">How
+                                                    to explore the Republic of Ireland, guided entirely by local
+                                                    advice
+                                                </a>
+                                            </h3>
+                                            <div class="post-date">26 октября 2018</div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="template-shortline">
+                                    <div class="saxon-shortline-post saxon-post aos-init aos-animate"
+                                        data-aos="fade-up">
+                                        <div class="saxon-post-image-wrapper">
+                                            <a href="#">
+                                                <div class="saxon-post-image"
+                                                    style="background-image: url(http://wp.wp-preview.com/saxon/saxon-3/wp-content/uploads/2018/11/saxon-003-011-110x90.jpg);"
+                                                    style="background-image: url(http://wp.wp-preview.com/saxon/saxon-3/wp-content/uploads/2018/11/saxon-003-011-110x90.jpg);">
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="saxon-post-details">
+                                            <div class="post-categories">
+                                                <a href="#region-page" class="mark region">Регион</a>
+                                            </div>
+                                            <h3 class="post-title"><a href="#">Recount
+                                                    Ordered in Florida Senate Race as Governor’s Contest Nears End</a>
+                                            </h3>
+                                            <div class="post-date">26 октября 2018</div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="template-shortline">
+                                    <div class="saxon-shortline-post saxon-post aos-init aos-animate"
+                                        data-aos="fade-up">
+                                        <div class="saxon-post-image-wrapper"><a href="#">
+                                                <div class="saxon-post-image"
+                                                    style="background-image: url(http://wp.wp-preview.com/saxon/saxon-3/wp-content/uploads/2018/11/saxon-003-003-110x90.jpg);"
+                                                    style="background-image: url(http://wp.wp-preview.com/saxon/saxon-3/wp-content/uploads/2018/11/saxon-003-003-110x90.jpg);">
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="saxon-post-details">
+                                            <div class="post-categories">
+                                                <a href="#region-page" class="mark region">Регион</a>
+                                            </div>
+                                            <h3 class="post-title"><a href="#">Why
+                                                    Amazon Chose the Wrong Locations for Its HQ2</a></h3>
+                                            <div class="post-date">26 октября 2018</div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="itm-w-btn">
+                            <div class="alcen saxon-block-button aos-init aos-animate" data-aos="fade-up">
+                                <a href="#" class="btn btn-grey btn-load-more">Смотреть еще</a>
+                            </div>
+                        </li>
+                        <li id="saxon-categories-2" class="widget widget_saxon_categories">
+                            <h2 class="widgettitle">
+                                Спецпроекты
+                            </h2>
+                            <div class="post-categories">
+                                <a href="#" style="background:#eba845;">Военное дело<span
+                                        class="post-categories-counter">3</span>
+                                </a>
+                                <a href="#" style="background:#4dcf8f;">Северный кавказ<span
+                                        class="post-categories-counter">8</span>
+                                </a>
+                                <a href="#" style="background:#1F5DEA">Терроризм/экстремизм<span
+                                        class="post-categories-counter">6</span>
+                                </a>
+                            </div>
+                        </li>
+                        <li id="saxon-social-icons-2" class="widget widget_saxon_social_icons">
+                            <h2 class="widgettitle">Мы в социальных сетях</h2>
+                            <div class="textwidget">
+                                <div class="social-icons-wrapper">
+                                    <a href="#" target="_blank" class="a-vk">
+                                        <i class="fa fa-vk"></i>
+                                    </a>
+                                    <a href="#" target="_blank" class="a-odnoklassniki">
+                                        <i class="fa fa-odnoklassniki"></i>
+                                    </a>
+                                    <a href="#" target="_blank" class="a-facebook">
+                                        <i class="fa fa-facebook"></i>
+                                    </a>
+                                    <a href="#" target="_blank" class="a-twitter">
+                                        <i class="fa fa-twitter"></i>
+                                    </a>
+                                    <a href="#" target="_blank" class="a-instagram">
+                                        <i class="fa fa-instagram"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                        <li id="saxon-list-posts-2" class="widget widget_saxon_list_entries">
+                            <h2 class="widgettitle">Популярные материалы</h2>
+                            <ul>
+                                <li class="template-postsmasonry1-2">
+                                    <div class="saxon-postsmasonry1-post saxon-postsmasonry1_2-post saxon-post format- aos-init aos-animate"
+                                        data-aos="fade-up">
+                                        <div class="saxon-post-image-wrapper">
+                                            <a href="#">
+                                                <div class="saxon-post-image"
+                                                    style="background-image: url(http://wp.wp-preview.com/saxon/saxon-3/wp-content/uploads/2018/11/saxon-003-007-1140x694.jpg);"
+                                                    style="background-image: url(http://wp.wp-preview.com/saxon/saxon-3/wp-content/uploads/2018/11/saxon-003-007-1140x694.jpg);">
+                                                </div>
+                                            </a>
+                                            <div class="post-categories">
+                                                <a href="#region-page" class="mark region">Регион</a>
+                                            </div>
+                                        </div>
+                                        <div class="saxon-post-details">
+                                            <h3 class="post-title"><a href="#">How
+                                                    Silicon Valley activism is changing the technology industry</a></h3>
+                                            <div class="post-date">26 октября 2018</div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="template-postsmasonry1-2">
+                                    <div class="saxon-postsmasonry1-post saxon-postsmasonry1_2-post saxon-post format- aos-init aos-animate"
+                                        data-aos="fade-up">
+                                        <div class="saxon-post-image-wrapper">
+                                            <a href="#">
+                                                <div class="saxon-post-image"
+                                                    style="background-image: url(http://wp.wp-preview.com/saxon/saxon-3/wp-content/uploads/2018/11/saxon-003-005-1140x694.jpg);"
+                                                    style="background-image: url(http://wp.wp-preview.com/saxon/saxon-3/wp-content/uploads/2018/11/saxon-003-005-1140x694.jpg);">
+                                                </div>
+                                            </a>
+                                            <div class="post-categories">
+                                                <a href="#region-page" class="mark region">Регион</a>
+                                            </div>
+                                        </div>
+                                        <div class="saxon-post-details">
+                                            <h3 class="post-title">
+                                                <a href="#">Julian
+                                                    Assange charged in US, court document accidentally reveals</a>
+                                            </h3>
+                                            <div class="post-date">26 октября 2018</div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="template-postsmasonry1-2">
+                                    <div class="saxon-postsmasonry1-post saxon-postsmasonry1_2-post saxon-post format- aos-init aos-animate"
+                                        data-aos="fade-up">
+                                        <div class="saxon-post-image-wrapper">
+                                            <a href="#">
+                                                <div class="saxon-post-image"
+                                                    style="background-image: url(http://wp.wp-preview.com/saxon/saxon-3/wp-content/uploads/2018/11/saxon-003-015-1140x694.jpg);"
+                                                    style="background-image: url(http://wp.wp-preview.com/saxon/saxon-3/wp-content/uploads/2018/11/saxon-003-015-1140x694.jpg);">
+                                                </div>
+                                            </a>
+                                            <div class="post-categories">
+                                                <a href="#region-page" class="mark region">Регион</a>
+                                            </div>
+                                        </div>
+                                        <div class="saxon-post-details">
+                                            <h3 class="post-title"><a href="#">How
+                                                    to explore the Republic of Ireland, guided entirely by local
+                                                    advice</a></h3>
+                                            <div class="post-date">26 октября 2018</div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="itm-w-btn">
+                            <div class="alcen saxon-block-button aos-init aos-animate" data-aos="fade-up">
+                                <a href="#" class="btn btn-grey btn-load-more">Смотреть еще</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--footer-->
+    <div class="footer-sidebar-2-wrapper footer-white">
+        <div class="footer-sidebar-2 sidebar container footer-sidebar-2-container">
+            <div class="footer-info">
+                <div class="row">
+                    <div class="site-info col-md-12">
+                        Сетевое издание "Южная служба новостей" зарегистрировано Федеральной службой по надзору в сфере
+                        связи,
+                        информационных технологий и массовых коммуникаций (Роскомнадзор) 05.03. 2018 года.
+                        Свидетельство о регистрации ЭЛ № ФС77-72411
+                    </div>
+                </div>
+                <div class="last-row">
+                    <div class="last-row__item last-row__menu">
+                        <ul id="menu-top-menu-1" class="links bottom-menu">
+                            <li class="menu-item menu-item-type-post_type menu-item-object-page">
+                                <a href="#">О нас</a>
+                            </li>
+                            <li class="menu-item menu-item-type-post_type menu-item-object-page">
+                                <a href="#">Контакты</a>
+                            </li>
+                            <li class="menu-item menu-item-type-custom menu-item-object-custom">
+                                <a target="_blank" href="#">Конфиденциальность</a>
+                            </li>
+                            <li class="pull-right icon-email menu-item menu-item-type-custom menu-item-object-custom">
+                                <a target="_blank" href="#">Подписка</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="last-row__item last-row__counter">
+                        <div>
+                            <img src="img/counter.png" alt="counter">
+                        </div>
+                    </div>
+                    <div class="last-row__item last-row__social">
+                        <div class="social-icons-wrapper">
+                            <a href="#" target="_blank" class="a-vk"><i class="fa fa-vk"></i></a>
+                            <a href="#" target="_blank" class="a-odnoklassniki"><i class="fa fa-odnoklassniki"></i></a>
+                            <a href="#" target="_blank" class="a-facebook"><i class="fa fa-facebook"></i></a>
+                            <a href="#" target="_blank" class="a-twitter"><i class="fa fa-twitter"></i></a>
+                            <a href="#" target="_blank" class="a-instagram"><i class="fa fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a class="scroll-to-top btn alt" aria-label="Scroll to top" href="#top"></a>
+    <div class="footer-wrapper">
+    </div>
+    <script type="text/javascript" src="js/aos.js"></script>
+    <script type="text/javascript" src="js/cookies_ui.js"></script>
+    <script type="text/javascript" src="js/script1.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            if (!catapultReadCookie("catAccCookies")) { // If the cookie has not been set then show the bar
+                $("html").addClass("has-cookie-bar");
+                $("html").addClass("cookie-bar-bottom-left-block");
+                $("html").addClass("cookie-bar-block");
+            }
+        });
+    </script>
+    <div id="catapult-cookie-bar" class="">
+        <span class="ctcc-left-side">Наш сайт использует cookies<a class="ctcc-more-info-link" tabindex=0
+                target="_blank" href="privacy.html">Политика конфиденциальности</a></span>
+        <span class="ctcc-right-side">
+            <button id="catapultCookie" tabindex=0 onclick="catapultAcceptCookies();">Понял</button>
+        </span>
+    </div>
+</body>
+
+</html>
