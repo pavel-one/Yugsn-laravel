@@ -2,6 +2,7 @@
 
 namespace App\Console\Services;
 
+use App\Jobs\ParserJob;
 use App\Models\MaterialCategory;
 use App\Models\Region;
 use App\Models\RegionCategory;
@@ -14,7 +15,7 @@ use Illuminate\Support\Facades\Log;
 class ParserService
 {
     private $apiUrl;
-    private $base_url;
+    public $base_url;
     private $currentTypeUpdate;
 
     /** @var Command */
@@ -60,24 +61,17 @@ class ParserService
     public function parseMaterial(): ParserService
     {
         $this->log('Начинаю парсить материалы');
+        $start = microtime(true);
         $response = Http::get($this->apiUrl)->json();
+        $end = microtime(true) - $start;
+        $this->log("Данные получены за $end секунд, добавляю в очередь");
 
         $bar = $this->console->getOutput()->createProgressBar(count($response));
         $bar->start();
         foreach ($response as $material) {
-            UserMaterial::unguard();
-            $materialData = $this->formatMaterial($material);
-            if (!$materialObject = $this->checkExists($materialData)) {
-                $materialObject = UserMaterial::create($materialData);
-            }
-            UserMaterial::reguard();
 
-            try {
-                $materialObject->clearMediaCollection();
-                $materialObject->addMediaFromUrl($this->base_url . $material['image'])->toMediaCollection();
-            } catch (\Exception $e) {
-                $this->error('ID: ' . $materialObject->id . ' - ' . $e->getMessage());
-            }
+            $job = new ParserJob($material);
+            dispatch($job);
 
             $bar->advance();
         }
@@ -135,7 +129,7 @@ class ParserService
      * @param array $data
      * @return UserMaterial|null
      */
-    private function checkExists(array $data): ?UserMaterial
+    public function checkExists(array $data): ?UserMaterial
     {
         $check = UserMaterial::where([
             'slug' => $data['slug']
@@ -145,9 +139,7 @@ class ParserService
             return null;
         }
 
-        return UserMaterial::first([
-            'slug' => $data['slug']
-        ]);
+        return UserMaterial::whereSlug($data['slug'])->first();
     }
 
     /**
@@ -170,7 +162,7 @@ class ParserService
      * @param array $material
      * @return array
      */
-    private function formatMaterial(array $material): array
+    public function formatMaterial(array $material): array
     {
         return [
             'title' => $material['title'] ?? 'Не задано',
@@ -221,20 +213,20 @@ class ParserService
             $this->console->info($msg);
         }
 
-        Log::info($msg);
+        Log::channel('parser')->info($msg);
     }
 
     /**
      * @param string $msg
      */
-    private function error(string $msg)
+    public function error(string $msg)
     {
         if ($this->console instanceof Command) {
             $this->console->newLine();
             $this->console->error($msg);
         }
 
-        Log::error($msg);
+        Log::channel('parser')->error($msg);
     }
 
 }
