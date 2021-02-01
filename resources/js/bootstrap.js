@@ -1,9 +1,16 @@
 // window._ = require('lodash');
 // window.axios = require('axios');
-require('jquery')
-require('../template/js/aos')
-require('../template/js/cookies_ui')
-require('../template/js/script1')
+// require('jquery')
+
+import $ from 'jquery';
+import aos from 'aos'
+
+global.jQuery = $;
+global.$ = $;
+global.AOS = aos;
+
+require('script-loader!../template/js/cookies_ui')
+require('script-loader!../template/js/script1')
 
 $(document).ready(function ($) {
     const html = $("html");

@@ -9,7 +9,7 @@ class SiteController extends Controller
 {
     public function index()
     {
-        dd('test');
+        return view('templates.index');
 //        $material = UserMaterial::first(1);
     }
 }
