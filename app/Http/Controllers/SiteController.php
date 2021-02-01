@@ -10,6 +10,5 @@ class SiteController extends Controller
     public function index()
     {
         return view('templates.index');
-//        $material = UserMaterial::first(1);
     }
 }

@@ -15,7 +15,3 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [SiteController::class, 'index']);
-
-Route::get('test', function () {
-    return view('templates.test');
-});
