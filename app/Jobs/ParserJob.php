@@ -38,8 +38,17 @@ class ParserJob implements ShouldQueue
     {
         UserMaterial::unguard();
         $materialData = $this->service->formatMaterial($this->apiData);
+        $this->log('Добавляю данные:');
+        $this->log($materialData);
+
         if (!$materialObject = $this->service->checkExists($materialData)) {
+            $this->log('Данные не найдены, создаю новые');
             $materialObject = UserMaterial::create($materialData);
+            if ($materialObject instanceof UserMaterial) {
+                $this->log('Создание успешно', true);
+            }
+        } else {
+            $this->log('Данные найдены, обновляю медиа');
         }
         UserMaterial::reguard();
 
@@ -47,7 +56,21 @@ class ParserJob implements ShouldQueue
             $materialObject->clearMediaCollection();
             $materialObject->addMediaFromUrl($this->service->base_url . $this->apiData['image'])->toMediaCollection();
         } catch (\Exception $e) {
-            $this->service->error('ID: ' . $materialObject->id . ' - ' . $e->getMessage());
+            $this->error('ID: ' . $materialObject->id . ' - ' . $e->getMessage());
         }
+    }
+
+    private function log($msg, $success = false)
+    {
+        if ($success) {
+            \Log::channel('parser-queue')->info($msg);
+            return;
+        }
+        \Log::channel('parser-queue')->notice($msg);
+    }
+
+    private function error(string $msg)
+    {
+        \Log::channel('parser-queue')->error($msg);
     }
 }

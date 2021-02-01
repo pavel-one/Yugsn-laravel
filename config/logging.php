@@ -106,6 +106,13 @@ return [
             'level' => env('LOG_LEVEL', 'debug'),
             'days' => 14,
         ],
+
+        'parser-queue' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/parser/queue.log'),
+            'level' => env('LOG_LEVEL', 'debug'),
+            'days' => 14,
+        ],
     ],
 
 ];
