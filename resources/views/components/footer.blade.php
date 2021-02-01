@@ -49,6 +49,7 @@
 <a class="scroll-to-top btn alt" aria-label="Scroll to top" href="#top"></a>
 <div class="footer-wrapper"></div>
 <script type="text/javascript" src="/js/app.js"></script>
+@livewireScripts
 <div id="catapult-cookie-bar">
     <span class="ctcc-left-side">
         Наш сайт использует cookies
