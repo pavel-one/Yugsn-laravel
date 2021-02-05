@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -34,28 +35,39 @@ use Spatie\Sluggable\SlugOptions;
  * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection|\Spatie\MediaLibrary\MediaCollections\Models\Media[] $media
  * @property-read int|null $media_count
  * @property-read \App\Models\User|null $user
- * @method static \Illuminate\Database\Eloquent\Builder|UserMaterial newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|UserMaterial newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|UserMaterial query()
- * @method static \Illuminate\Database\Eloquent\Builder|UserMaterial whereCategoryId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|UserMaterial whereContent($value)
- * @method static \Illuminate\Database\Eloquent\Builder|UserMaterial whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|UserMaterial whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|UserMaterial whereLongTitle($value)
- * @method static \Illuminate\Database\Eloquent\Builder|UserMaterial wherePublished($value)
- * @method static \Illuminate\Database\Eloquent\Builder|UserMaterial wherePublishedTime($value)
- * @method static \Illuminate\Database\Eloquent\Builder|UserMaterial whereRegions($value)
- * @method static \Illuminate\Database\Eloquent\Builder|UserMaterial whereSlug($value)
- * @method static \Illuminate\Database\Eloquent\Builder|UserMaterial whereTags($value)
- * @method static \Illuminate\Database\Eloquent\Builder|UserMaterial whereTitle($value)
- * @method static \Illuminate\Database\Eloquent\Builder|UserMaterial whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|UserMaterial whereUserId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|UserMaterial whereViews($value)
+ * @method static Builder|UserMaterial newModelQuery()
+ * @method static Builder|UserMaterial newQuery()
+ * @method static Builder|UserMaterial query()
+ * @method static Builder|UserMaterial whereCategoryId($value)
+ * @method static Builder|UserMaterial whereContent($value)
+ * @method static Builder|UserMaterial whereCreatedAt($value)
+ * @method static Builder|UserMaterial whereId($value)
+ * @method static Builder|UserMaterial whereLongTitle($value)
+ * @method static Builder|UserMaterial wherePublished($value)
+ * @method static Builder|UserMaterial wherePublishedTime($value)
+ * @method static Builder|UserMaterial whereRegions($value)
+ * @method static Builder|UserMaterial whereSlug($value)
+ * @method static Builder|UserMaterial whereTags($value)
+ * @method static Builder|UserMaterial whereTitle($value)
+ * @method static Builder|UserMaterial whereUpdatedAt($value)
+ * @method static Builder|UserMaterial whereUserId($value)
+ * @method static Builder|UserMaterial whereViews($value)
  * @mixin \Eloquent
  */
 class UserMaterial extends Model implements HasMedia
 {
     use HasFactory, HasSlug, InteractsWithMedia;
+
+    public const MINI_FIELDS = [
+        'id',
+        'user_id',
+        'category_id',
+        'title',
+        'published_time',
+        'tags',
+        'slug',
+        'views'
+    ];
 
     public const THUMB_SIZES = [
         'normal' => [360, 234],
@@ -71,6 +83,29 @@ class UserMaterial extends Model implements HasMedia
     protected $dates = [
         'published_time',
     ];
+
+    /**
+     * Для миниатюры материала
+     * @param bool $relations
+     * @return Builder
+     */
+    public static function findMini(bool $relations = true): Builder
+    {
+        $query = self::wherePublished(true)
+            ->select(self::MINI_FIELDS)
+            ->orderByDesc('published_time');
+
+        if ($relations) {
+            $query->with('category', function ($query) {
+                $query->select(['id', 'name', 'slug']);
+            });
+            $query->with('user', function ($query) {
+                $query->select(['id', 'name']);
+            });
+        }
+
+        return $query;
+    }
 
     public static function table(): string
     {
@@ -109,8 +144,7 @@ class UserMaterial extends Model implements HasMedia
     {
         foreach (self::THUMB_SIZES as $name => $size) {
             $this->addMediaConversion("thumb-$name")
-                ->fit(Manipulations::FIT_CROP, $size[0], $size[1])
-            ;
+                ->fit(Manipulations::FIT_CROP, $size[0], $size[1]);
         }
     }
 }

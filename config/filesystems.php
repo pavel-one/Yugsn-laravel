@@ -50,6 +50,7 @@ return [
         'materials' => [
             'driver' => 'local',
             'root' => storage_path('app/materials'),
+            'url' => env('APP_URL').'/articles'
         ],
 
     ],
@@ -66,7 +67,8 @@ return [
     */
 
     'links' => [
-        public_path('storage') => storage_path('app/public'),
+        public_path('files') => storage_path('app/public'),
+        public_path('articles') => storage_path('app/materials')
     ],
 
 ];
