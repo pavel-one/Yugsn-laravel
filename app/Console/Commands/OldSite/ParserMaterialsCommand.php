@@ -34,7 +34,10 @@ class ParserMaterialsCommand extends Command
             2 => ParserService::TYPE_ALL
         ], ParserService::TYPE_MATERIAL, 2);
 
-        $service = new ParserService($type);
+
+        $limit = (int) $this->ask('Сколько парсить? [0]') ?? 0;
+
+        $service = new ParserService($type, $limit);
 
 
         $service->update($this);

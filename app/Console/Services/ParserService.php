@@ -14,22 +14,25 @@ use Illuminate\Support\Facades\Log;
 
 class ParserService
 {
-    private $apiUrl;
-    public $base_url;
-    private $currentTypeUpdate;
+    private string $apiUrl;
+    public string $base_url;
+    private string $currentTypeUpdate;
+
+    private int $limit;
 
     /** @var Command */
-    private $console;
+    private Command $console;
 
     public const TYPE_MATERIAL = 'Материалы';
     public const TYPE_REGIONS = 'Регионы';
     public const TYPE_ALL = 'Все';
 
-    public function __construct(string $type)
+    public function __construct(string $type, int $limit = 0)
     {
         $this->base_url = 'https://yugsn.ru/';
         $this->apiUrl = $this->base_url . 'api/';
         $this->currentTypeUpdate = $type;
+        $this->limit = $limit;
     }
 
     /**
@@ -65,6 +68,23 @@ class ParserService
         $response = Http::get($this->apiUrl)->json();
         $end = microtime(true) - $start;
         $this->log("Данные получены за $end секунд, добавляю в очередь");
+
+        if ($this->limit) {
+            $bar = $this->console->getOutput()->createProgressBar($this->limit);
+            $bar->start();
+
+            for ($i = 0; $i < $this->limit; $i++) {
+                $material = $response[rand(0, count($response))];
+                $job = new ParserJob($material);
+                dispatch($job);
+
+                $bar->advance();
+            }
+
+            $bar->finish();
+
+            return $this;
+        }
 
         $bar = $this->console->getOutput()->createProgressBar(count($response));
         $bar->start();
