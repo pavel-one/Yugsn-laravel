@@ -11,24 +11,24 @@ use Spatie\Sluggable\SlugOptions;
 /**
  * App\Models\MaterialCategory
  *
- * @method static \Illuminate\Database\Eloquent\Builder|MaterialCategory newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|MaterialCategory newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|MaterialCategory query()
- * @mixin \Eloquent
  * @property int $id
  * @property string $name
  * @property string $slug
  * @property int $special
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\UserMaterial[] $materials
+ * @property-read int|null $materials_count
+ * @method static \Illuminate\Database\Eloquent\Builder|MaterialCategory newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|MaterialCategory newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|MaterialCategory query()
  * @method static \Illuminate\Database\Eloquent\Builder|MaterialCategory whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|MaterialCategory whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|MaterialCategory whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|MaterialCategory whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder|MaterialCategory whereSpecial($value)
  * @method static \Illuminate\Database\Eloquent\Builder|MaterialCategory whereUpdatedAt($value)
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\UserMaterial[] $materials
- * @property-read int|null $materials_count
+ * @mixin \Eloquent
  */
 class MaterialCategory extends Model
 {

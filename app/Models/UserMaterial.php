@@ -24,7 +24,7 @@ use Spatie\Sluggable\SlugOptions;
  * @property string $long_title
  * @property string|null $content
  * @property int $published
- * @property string|null $published_time
+ * @property \Illuminate\Support\Carbon|null $published_time
  * @property mixed|null $tags
  * @property string $slug
  * @property int $views
@@ -32,7 +32,7 @@ use Spatie\Sluggable\SlugOptions;
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property mixed|null $regions
  * @property-read \App\Models\MaterialCategory $category
- * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection|\Spatie\MediaLibrary\MediaCollections\Models\Media[] $media
+ * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection|Media[] $media
  * @property-read int|null $media_count
  * @property-read \App\Models\User|null $user
  * @method static Builder|UserMaterial newModelQuery()
@@ -120,6 +120,47 @@ class UserMaterial extends Model implements HasMedia
     public function category(): BelongsTo
     {
         return $this->belongsTo(MaterialCategory::class, 'category_id', 'id');
+    }
+
+    /**
+     * Название категории
+     * @return string
+     */
+    public function getNameCategory(): string
+    {
+        return $this->category->name;
+    }
+
+    /**
+     * Ссылка на категорию
+     * @return string
+     */
+    public function getLinkCategory(): string
+    {
+        return route('category.material', $this->category->slug);
+    }
+
+    /**
+     * Время публикации материала
+     * @return string
+     */
+    public function getPublishedTime(): string
+    {
+        return $this->published_time->diffForHumans();
+    }
+
+    /**
+     * Ссылка на регион
+     * @return string
+     */
+    public function getLinkRegion(): string
+    {
+        return '#';
+    }
+
+    public function getNameRegion(): string
+    {
+        return '#';
     }
 
     /**

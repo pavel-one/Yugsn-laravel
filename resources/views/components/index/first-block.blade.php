@@ -6,21 +6,23 @@
                     <div class="saxon-overlay-alt-post saxon-post saxon-post-invert" data-aos="fade-up">
                         <div class="saxon-post-wrapper-inner">
                             <div class="saxon-post-image"
-                                 style="background-image: url(https://yugsn.ru/assets/users/27/27-19150-oa0pl4.jpg);">
+                                 style="background-image: url({{$material_big->getFirstMediaUrl('default', 'thumb-small-big')}});">
                             </div>
                             <div class="saxon-post-details">
                                 <div class="post-categories">
-                                    <a href="#category-page" class="mark category">
-                                        {{ $material_big->category->name }}
+                                    <a href="{{ $material_big->getLinkCategory() }}" class="mark category">
+                                        {{ $material_big->getNameCategory() }}
                                     </a>
-                                    <a href="#region-page" class="mark region">Москва</a>
+                                    <a href="{{ $material_big->getLinkRegion() }}" class="mark region">
+                                        {{ $material_big->getNameRegion() }}
+                                    </a>
                                 </div>
                                 <div class="saxon-post-details-inner">
 
                                     <h3 class="post-title">
-                                        <a href="#">{{ $material_big->title }}</a>
+                                        <a href="{{ route('category.material', $material_big->slug) }}">{{ $material_big->title }}</a>
                                     </h3>
-                                    <div class="post-date">{{ $material_big->published_time->diffForHumans() }}</div>
+                                    <div class="post-date">{{ $material_big->getPublishedTime() }}</div>
                                 </div>
                                 <!--
                                 <a href="shop.html" class="lock-icon" title="Доступно только по платной подписке">
@@ -40,20 +42,22 @@
                                 </div>
                                 <div class="saxon-post-details">
                                     <div class="post-categories">
-                                        <a href="#category-page" class="mark category">
-                                            {{ $material->category->name }}
+                                        <a href="{{ $material->getLinkCategory() }}" class="mark category">
+                                            {{ $material->getNameCategory() }}
                                         </a>
-                                        <a href="#region-page" class="mark region">Ростовская область</a>
+                                        <a href="{{ $material->getLinkRegion() }}" class="mark region">
+                                            {{ $material->getNameRegion() }}
+                                        </a>
                                     </div>
                                     <div class="saxon-post-details-inner">
 
                                         <h3 class="post-title">
-                                            <a href="#">
+                                            <a href="{{ route('category.material', $material_big->slug) }}">
                                                 {{ $material->title }}
                                             </a>
                                         </h3>
                                         <div class="post-date">
-                                            {{ $material->published_time->diffForHumans() }}
+                                            {{ $material->getPublishedTime() }}
                                         </div>
                                     </div>
                                 </div>
