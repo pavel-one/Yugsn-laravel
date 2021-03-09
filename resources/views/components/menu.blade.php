@@ -33,120 +33,34 @@
                                                     class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children mgt-menu-fullwidth-inside">
                                                     <a href="category.html">Рубрики</a>
                                                     <ul class="sub-menu">
-                                                        <li id="mgt-menu-item-443"
-                                                            class="menu-item menu-item-type-custom menu-item-object-custom">
-                                                            <a href="#">Власть</a>
-                                                        </li>
-                                                        <li id="mgt-menu-item-444"
-                                                            class="menu-item menu-item-type-custom menu-item-object-custom">
-                                                            <a href="#">Политика</a>
-                                                        </li>
-                                                        <li id="mgt-menu-item-455"
-                                                            class="menu-item menu-item-type-custom menu-item-object-custom">
-                                                            <a href="#">Экономика</a>
-                                                        </li>
-                                                        <li id="mgt-menu-item-455"
-                                                            class="menu-item menu-item-type-custom menu-item-object-custom">
-                                                            <a href="#">Происшествия</a>
-                                                        </li>
-                                                        <li id="mgt-menu-item-455"
-                                                            class="menu-item menu-item-type-custom menu-item-object-custom">
-                                                            <a href="#">Криминал</a>
-                                                        </li>
-                                                        <li id="mgt-menu-item-455"
-                                                            class="menu-item menu-item-type-custom menu-item-object-custom">
-                                                            <a href="#">Общество</a>
-                                                        </li>
-                                                        <li id="mgt-menu-item-455"
-                                                            class="menu-item menu-item-type-custom menu-item-object-custom">
-                                                            <a href="#">Культура</a>
-                                                        </li>
-                                                        <li id="mgt-menu-item-455"
-                                                            class="menu-item menu-item-type-custom menu-item-object-custom">
-                                                            <a href="#">Спорт</a>
-                                                        </li>
-                                                        <li id="mgt-menu-item-455"
-                                                            class="menu-item menu-item-type-custom menu-item-object-custom">
-                                                            <a href="#">Наука</a>
-                                                        </li>
+                                                        @foreach($categories as $category)
+                                                            <li id="mgt-menu-item-443"
+                                                                class="menu-item menu-item-type-custom menu-item-object-custom">
+                                                                <a href="{{route('category.material', $category->slug)}}">
+                                                                    {{$category->name}}
+                                                                </a>
+                                                            </li>
+                                                        @endforeach
                                                     </ul>
                                                 </li>
                                                 <li id="mgt-menu-item-105"
                                                     class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children mgt-menu-fullwidth-inside">
-                                                    <a href="regions.html">Регионы</a>
+                                                    <a href="#">Регионы</a>
                                                     <ul class="sub-menu">
-                                                        <li id="mgt-menu-item-443"
-                                                            class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children">
-                                                            <a href="#">ЮФО</a>
-                                                            <ul class="sub-menu  level-1">
-                                                                <li id="mgt-menu-item-536"
-                                                                    class="menu-item menu-item-type-custom menu-item-object-custom">
-                                                                    <a href="#">Адыгея</a></li>
-                                                                <li id="mgt-menu-item-535"
-                                                                    class="menu-item menu-item-type-custom menu-item-object-custom">
-                                                                    <a href="#">Астраханская область</a></li>
-                                                                <li id="mgt-menu-item-532"
-                                                                    class="menu-item menu-item-type-custom menu-item-object-custom">
-                                                                    <a href="#">Волгоградская область</a></li>
-                                                                <li id="mgt-menu-item-537"
-                                                                    class="menu-item menu-item-type-custom menu-item-object-custom">
-                                                                    <a href="#">Калмыкия</a></li>
-                                                                <li id="mgt-menu-item-533"
-                                                                    class="menu-item menu-item-type-custom menu-item-object-custom">
-                                                                    <a href="#">Краснодарский край</a></li>
-                                                                <li id="mgt-menu-item-571"
-                                                                    class="menu-item menu-item-type-custom menu-item-object-custom">
-                                                                    <a href="#">Крым</a></li>
-                                                                <li id="mgt-menu-item-816"
-                                                                    class="menu-item menu-item-type-post_type menu-item-object-post">
-                                                                    <a href="#">Ростовская область</a></li>
-                                                                <li id="mgt-menu-item-449"
-                                                                    class="menu-item menu-item-type-post_type menu-item-object-post">
-                                                                    <a href="#">Севастополь</a></li>
-                                                            </ul>
-                                                        </li>
-                                                        <li id="mgt-menu-item-444"
-                                                            class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children">
-                                                            <a href="#">СКФО</a>
-                                                            <ul class="sub-menu  level-1">
-                                                                <li id="mgt-menu-item-445"
-                                                                    class="menu-item menu-item-type-post_type menu-item-object-page">
-                                                                    <a href="#">Дагестан</a></li>
-                                                                <li id="mgt-menu-item-446"
-                                                                    class="menu-item menu-item-type-post_type menu-item-object-page">
-                                                                    <a href="#">Ингушетия</a></li>
-                                                                <li id="mgt-menu-item-447"
-                                                                    class="menu-item menu-item-type-post_type menu-item-object-page">
-                                                                    <a href="#">Кабардино-Балкария</a></li>
-                                                                <li id="mgt-menu-item-448"
-                                                                    class="menu-item menu-item-type-post_type menu-item-object-page">
-                                                                    <a href="#">Карачаево-Черкесия</a></li>
-                                                                <li id="mgt-menu-item-484"
-                                                                    class="menu-item menu-item-type-custom menu-item-object-custom">
-                                                                    <a href="#">Северная Осетия</a></li>
-                                                                <li id="mgt-menu-item-483"
-                                                                    class="menu-item menu-item-type-custom menu-item-object-custom">
-                                                                    <a href="#">Ставропольский край</a></li>
-                                                                <li id="mgt-menu-item-483"
-                                                                    class="menu-item menu-item-type-custom menu-item-object-custom">
-                                                                    <a href="#">Чечня</a></li>
-                                                            </ul>
-                                                        </li>
-                                                        <li id="mgt-menu-item-455"
-                                                            class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children">
-                                                            <a href="#">Страны</a>
-                                                            <ul class="sub-menu  level-1">
-                                                                <li id="mgt-menu-item-460"
-                                                                    class="menu-item menu-item-type-custom menu-item-object-custom">
-                                                                    <a href="#">Абхазия</a></li>
-                                                                <li id="mgt-menu-item-461"
-                                                                    class="menu-item menu-item-type-custom menu-item-object-custom">
-                                                                    <a href="#">Азербайджан</a></li>
-                                                                <li id="mgt-menu-item-456"
-                                                                    class="menu-item menu-item-type-custom menu-item-object-custom">
-                                                                    <a href="#">Южная Осетия</a></li>
-                                                            </ul>
-                                                        </li>
+                                                        @foreach($regions as $region_category)
+                                                            <li id="mgt-menu-item-443"
+                                                                class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children">
+                                                                <a href="#">{{$region_category->name}}</a>
+                                                                <ul class="sub-menu  level-1">
+                                                                    @foreach($region_category->regions as $region)
+                                                                        <li id="mgt-menu-item-536"
+                                                                            class="menu-item menu-item-type-custom menu-item-object-custom">
+                                                                            <a href="{{$region->alias}}">{{$region->name}}</a>
+                                                                        </li>
+                                                                    @endforeach
+                                                                </ul>
+                                                            </li>
+                                                        @endforeach
                                                     </ul>
                                                 </li>
                                                 <li class="menu-item menu-item-type-taxonomy menu-item-object-category">
