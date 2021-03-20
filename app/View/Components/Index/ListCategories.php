@@ -35,7 +35,8 @@ class ListCategories extends Component
     public function render()
     {
         return view('components.index.list-categories', [
-            'categories' => $this->categories
+            'categories' => $this->categories,
+
         ]);
     }
 }

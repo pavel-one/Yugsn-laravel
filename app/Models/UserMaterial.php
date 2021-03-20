@@ -86,13 +86,21 @@ class UserMaterial extends Model implements HasMedia
 
     /**
      * Для миниатюры материала
-     * @param bool $relations
+     * @param MaterialCategory|null $category - категория
+     * @param bool $content - С контентом
+     * @param bool $relations - связи
      * @return Builder
      */
-    public static function findMini(bool $relations = true): Builder
+    public static function findMini($category = null, bool $content = false, bool $relations = true): Builder
     {
+        $fields = self::MINI_FIELDS;
+
+        if ($content) {
+            $fields = array_merge($fields, ['content']);
+        }
+
         $query = self::wherePublished(true)
-            ->select(self::MINI_FIELDS)
+            ->select($fields)
             ->orderByDesc('published_time');
 
         if ($relations) {
@@ -102,6 +110,10 @@ class UserMaterial extends Model implements HasMedia
             $query->with('user', function ($query) {
                 $query->select(['id', 'name']);
             });
+        }
+
+        if ($category instanceof MaterialCategory) {
+            $query->where('category_id', $category->id);
         }
 
         return $query;

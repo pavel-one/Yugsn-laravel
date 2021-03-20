@@ -4,7 +4,7 @@
         /** @var \App\Models\UserMaterial $material */
         /** @var \App\Models\UserMaterial[] $materials */
 
-        $materials = $category->materials()->limit(3)->get()->all();
+        $materials = \App\Models\UserMaterial::findMini($category, true)->limit(3)->get()->all();
     @endphp
 
     @switch($loop->index)
