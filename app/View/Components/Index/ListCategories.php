@@ -3,6 +3,7 @@
 namespace App\View\Components\Index;
 
 use App\Models\MaterialCategory;
+use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class ListCategories extends Component
@@ -12,19 +13,24 @@ class ListCategories extends Component
     /**
      * Create a new component instance.
      *
-     * @return void
+     * @param $limit
+     * @param $offset
      */
-    public function __construct()
+    public function __construct($limit, $offset)
     {
-        $this->categories = \Cache::remember('index-list-categories', 60 * 10, function () {
-            return MaterialCategory::all();
+        $this->categories = \Cache::remember('index-list-categories', 60 * 10, function () use ($limit, $offset) {
+            return MaterialCategory::orderBy('sort')
+                ->limit((int) $limit)
+                ->offset((int) $offset)
+                ->get()
+                ->all();
         });
     }
 
     /**
      * Get the view / contents that represent the component.
      *
-     * @return \Illuminate\Contracts\View\View|string
+     * @return View|string
      */
     public function render()
     {

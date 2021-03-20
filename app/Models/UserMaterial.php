@@ -141,6 +141,15 @@ class UserMaterial extends Model implements HasMedia
     }
 
     /**
+     * Ссылка на материал
+     * @return string
+     */
+    public function getLink(): string
+    {
+        return route('category.material', $this->slug);
+    }
+
+    /**
      * Время публикации материала
      * @return string
      */
@@ -158,9 +167,34 @@ class UserMaterial extends Model implements HasMedia
         return '#';
     }
 
+    /**
+     * Отдает имя региона
+     * @return string
+     */
     public function getNameRegion(): string
     {
-        return '#';
+        return 'Регион';
+    }
+
+    /**
+     * Отдает краткое содержание статьи
+     * @param int $words - Количество слов
+     * @param bool $html - Включить html теги
+     * @return string
+     */
+    public function getSmallContent($words = 40, $html = false): string
+    {
+        if (!$this->content) {
+            return 'Статья находится в разработке';
+        }
+
+        $text = \Str::words($this->content, $words);
+
+        if (!$html) {
+            $text = strip_tags($text);
+        }
+
+        return $text;
     }
 
     /**

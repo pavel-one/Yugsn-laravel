@@ -14,5 +14,6 @@
             </div>
         </div>
     </div>
-    <x-index.list-categories></x-index.list-categories>
+    <x-index.list-categories :limit="4" :offset="0"></x-index.list-categories>
+    <x-chunks.subscribe></x-chunks.subscribe>
 @endsection

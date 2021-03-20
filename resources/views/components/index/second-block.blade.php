@@ -18,7 +18,7 @@
                         </div>
                         <div class="saxon-post-details-inner">
                             <h3 class="post-title">
-                                <a href="{{ route('category.material', $material->slug) }}">
+                                <a href="{{ $material->getLink() }}">
                                     {{ $material->title }}
                                 </a>
                             </h3>

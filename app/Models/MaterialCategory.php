@@ -17,6 +17,7 @@ use Spatie\Sluggable\SlugOptions;
  * @property int $special
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property int $sort
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\UserMaterial[] $materials
  * @property-read int|null $materials_count
  * @method static \Illuminate\Database\Eloquent\Builder|MaterialCategory newModelQuery()
@@ -26,6 +27,7 @@ use Spatie\Sluggable\SlugOptions;
  * @method static \Illuminate\Database\Eloquent\Builder|MaterialCategory whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|MaterialCategory whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|MaterialCategory whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MaterialCategory whereSort($value)
  * @method static \Illuminate\Database\Eloquent\Builder|MaterialCategory whereSpecial($value)
  * @method static \Illuminate\Database\Eloquent\Builder|MaterialCategory whereUpdatedAt($value)
  * @mixin \Eloquent
@@ -49,5 +51,10 @@ class MaterialCategory extends Model
         return SlugOptions::create()
             ->generateSlugsFrom('name')
             ->saveSlugsTo('slug');
+    }
+
+    public function getLink(): string
+    {
+        return route('category.material', $this->slug);
     }
 }
