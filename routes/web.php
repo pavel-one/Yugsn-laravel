@@ -17,3 +17,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [SiteController::class, 'index'])->name('index');
 Route::get('/{slug}', [SiteController::class, 'categoryOrMaterial'])
     ->name('category.material');
+
+Route::get('/news', [SiteController::class, 'news'])->name('news');

@@ -27,4 +27,9 @@ class SiteController extends Controller
 
         return abort(404);
     }
+
+    public function news()
+    {
+        return 'В разработке';
+    }
 }

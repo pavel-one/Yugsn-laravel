@@ -7,9 +7,8 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12 saxon-block-button alcen" data-aos="fade-up">
-                <a href="news.html" class="btn btn-grey btn-load-more">
-                    Смотреть
-                    еще
+                <a href="{{ route('news') }}" class="btn btn-grey btn-load-more">
+                    Смотреть все
                 </a>
             </div>
         </div>
