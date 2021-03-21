@@ -11,6 +11,10 @@ class ListCrime extends Component
 {
     /** @var UserMaterial[]  */
     public $materials;
+    /** @var UserMaterial */
+    public $firstMaterial;
+    /** @var UserMaterial[] */
+    public $secondMaterials;
 
     /** @var MaterialCategory */
     public $category;
@@ -30,10 +34,27 @@ class ListCrime extends Component
             return false;
         }
 
-        $this->materials = UserMaterial::findMini($category, true)
-            ->limit($limit)
-            ->get()
-            ->all();
+        $this->firstMaterial = \Cache::remember('list-crime-first', 60 * 10, function () use ($category) {
+            return UserMaterial::findMini($category, true)->first();
+        });
+        $limit = $limit - 1;
+
+        $this->secondMaterials = \Cache::remember('list-crime-second', 60 * 10, function () use ($category) {
+            return UserMaterial::findMini($category)
+                ->limit(2)
+                ->offset(1)
+                ->get()
+                ->all();
+        });
+        $limit = $limit - 2;
+
+        $this->materials = \Cache::remember('list-crime-materials', 60 * 10, function () use ($category, $limit) {
+            return UserMaterial::findMini($category, true)
+                ->offset(3)
+                ->limit($limit)
+                ->get()
+                ->all();
+        });
     }
 
     /**
@@ -45,6 +66,8 @@ class ListCrime extends Component
     {
         return view('components.index.list-crime', [
             'materials' => $this->materials,
+            'first' => $this->firstMaterial,
+            'secondMaterials' => $this->secondMaterials,
             'category' => $this->category
         ]);
     }
