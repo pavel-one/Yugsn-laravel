@@ -36,8 +36,9 @@ class ParserMaterialsCommand extends Command
 
 
         $limit = (int) $this->ask('Сколько парсить? [0]') ?? 0;
+        $category = $this->choice('Найдены категории, какую парсить?', ParserService::getAllCategories());
 
-        $service = new ParserService($type, $limit);
+        $service = new ParserService($type, $category, $limit);
 
 
         $service->update($this);

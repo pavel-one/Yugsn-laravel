@@ -14,9 +14,11 @@ use Illuminate\Support\Facades\Log;
 
 class ParserService
 {
-    private string $apiUrl;
     public string $base_url;
+    private string $apiUrl;
     private string $currentTypeUpdate;
+
+    private $category;
 
     private int $limit;
 
@@ -27,12 +29,41 @@ class ParserService
     public const TYPE_REGIONS = 'Регионы';
     public const TYPE_ALL = 'Все';
 
-    public function __construct(string $type, int $limit = 0)
+    public function __construct(string $type, string $category = null, int $limit = 0)
     {
         $this->base_url = 'https://yugsn.ru/';
         $this->apiUrl = $this->base_url . 'api/';
         $this->currentTypeUpdate = $type;
         $this->limit = $limit;
+        $this->category = null;
+
+        if ($category !== 'Все') {
+            $this->category = $category;
+        }
+    }
+
+    /**
+     * Получить все категории
+     * @return array
+     */
+    public static function getAllCategories(): array
+    {
+        $response = Http::get('https://yugsn.ru/api/')->json();
+
+        $out = [];
+
+        foreach ($response as $item) {
+            $out[] = $item['category_name'];
+        }
+
+        $out = array_unique($out);
+        $result = ['Все'];
+
+        foreach ($out as $item) {
+            $result[] = $item;
+        }
+
+        return $result;
     }
 
     /**
@@ -65,16 +96,20 @@ class ParserService
     {
         $this->log('Начинаю парсить материалы');
         $start = microtime(true);
-        $response = Http::get($this->apiUrl)->json();
+        $response = $this->getMaterialsWithFilter();
         $end = microtime(true) - $start;
         $this->log("Данные получены за $end секунд, добавляю в очередь");
 
         if ($this->limit) {
+            if ($this->limit > count($response)) {
+                $this->limit = count($response);
+            }
+
             $bar = $this->console->getOutput()->createProgressBar($this->limit);
             $bar->start();
 
             for ($i = 0; $i < $this->limit; $i++) {
-                $material = $response[rand(0, count($response))];
+                $material = $response[rand(0, count($response) - 1)];
                 $job = new ParserJob($material);
                 dispatch($job);
 
@@ -197,6 +232,28 @@ class ParserService
             'content' => $this->getContent((int)$material['id']),
             'category_id' => $this->createOrGetCategory($material['category_name'])
         ];
+    }
+
+    /**
+     * Отдает список материалов с применением фильтров
+     * @return array
+     */
+    private function getMaterialsWithFilter(): array
+    {
+        $out = Http::get($this->apiUrl)->json();
+        $result = [];
+
+        foreach ($out as $item) {
+            if ($this->category && ($item['category_name'] !== $this->category)) {
+                continue;
+            }
+
+            $result[] = $item;
+        }
+
+        $this->log("В категории <{$this->category}> найдено ".count($result).' материалов');
+
+        return $result;
     }
 
     /**
