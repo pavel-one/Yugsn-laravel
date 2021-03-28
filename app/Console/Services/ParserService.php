@@ -251,7 +251,9 @@ class ParserService
             $result[] = $item;
         }
 
-        $this->log("В категории <{$this->category}> найдено ".count($result).' материалов');
+        if ($this->category) {
+            $this->log("В категории <{$this->category}> найдено " . count($result) . ' материалов');
+        }
 
         return $result;
     }
