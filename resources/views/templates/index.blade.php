@@ -18,4 +18,5 @@
 
     <x-index.list-crime categoryName="Криминал" :limit="8"></x-index.list-crime>
     <x-index.list-society-block categoryName="Общество" :limit="4"></x-index.list-society-block>
+    <x-index.columnistic categoryName="Колумнистика"></x-index.columnistic>
 @endsection
