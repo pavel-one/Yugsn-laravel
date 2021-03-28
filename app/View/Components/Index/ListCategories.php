@@ -8,6 +8,10 @@ use Illuminate\View\Component;
 
 class ListCategories extends Component
 {
+    public const EXCLUDE_CAT = [
+        'Криминал', 'Общество', 'Колумнистика'
+    ];
+
     private $categories;
 
     /**
@@ -16,12 +20,13 @@ class ListCategories extends Component
      * @param $limit
      * @param $offset
      */
-    public function __construct($limit, $offset)
+    public function __construct(int $limit, int $offset)
     {
-        $this->categories = \Cache::remember('index-list-categories', 60 * 10, function () use ($limit, $offset) {
+        $this->categories = \Cache::remember("index-list-categories-$limit-$offset", 60 * 10, function () use ($limit, $offset) {
             return MaterialCategory::orderBy('sort')
-                ->limit((int) $limit)
-                ->offset((int) $offset)
+                ->whereNotIn('name', self::EXCLUDE_CAT)
+                ->limit($limit)
+                ->offset($offset)
                 ->get()
                 ->all();
         });

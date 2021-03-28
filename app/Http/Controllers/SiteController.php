@@ -32,4 +32,16 @@ class SiteController extends Controller
     {
         return 'В разработке';
     }
+
+    public function test()
+    {
+        dd(
+            MaterialCategory::orderBy('sort')
+                ->whereNotIn('name', ['Криминал', 'Общество', 'Колумнистика'])
+                ->limit(2)
+                ->offset(0)
+                ->get()
+                ->all()
+        );
+    }
 }

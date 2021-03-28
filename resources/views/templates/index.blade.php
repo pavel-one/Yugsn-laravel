@@ -13,10 +13,10 @@
             </div>
         </div>
     </div>
-    <x-index.list-categories :limit="4" :offset="0"></x-index.list-categories>
+    <x-index.list-categories limit="4" offset="0"></x-index.list-categories>
     <x-chunks.subscribe></x-chunks.subscribe>
-
-    <x-index.list-crime categoryName="Криминал" :limit="8"></x-index.list-crime>
-    <x-index.list-society-block categoryName="Общество" :limit="4"></x-index.list-society-block>
+    <x-index.list-crime categoryName="Криминал" limit="8"></x-index.list-crime>
+    <x-index.list-society-block categoryName="Общество" limit="4"></x-index.list-society-block>
     <x-index.columnistic categoryName="Колумнистика"></x-index.columnistic>
+    <x-index.list-categories limit="2" offset="4"></x-index.list-categories>
 @endsection
