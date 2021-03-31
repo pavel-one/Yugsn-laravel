@@ -7,7 +7,8 @@
         $materials = \App\Models\UserMaterial::findMini($category, true)->limit(3)->get()->all();
     @endphp
 
-    @if(!$materials)
+    @if(count($materials) > 1)
+{{--   TODO: WTF DONT WORK     --}}
         @continue
     @endif
 
