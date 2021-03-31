@@ -4,6 +4,7 @@ namespace App\View\Components\Index;
 
 use App\Models\MaterialCategory;
 use App\Models\UserMaterial;
+use App\Providers\RouteServiceProvider;
 use Illuminate\View\Component;
 
 class ListSocietyBlock extends Component
@@ -23,7 +24,7 @@ class ListSocietyBlock extends Component
     {
         $category = $this->category = MaterialCategory::whereName($categoryName)->first();
 
-        $this->materials = \Cache::remember('list-society', 60 * 10, function () use ($category, $limit) {
+        $this->materials = \Cache::remember('list-society_' . RouteServiceProvider::getRegion(), 60 * 10, function () use ($category, $limit) {
             return UserMaterial::findMini($category)
                 ->limit($limit)
                 ->get()

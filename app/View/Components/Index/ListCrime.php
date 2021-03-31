@@ -4,6 +4,7 @@ namespace App\View\Components\Index;
 
 use App\Models\MaterialCategory;
 use App\Models\UserMaterial;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
@@ -34,12 +35,12 @@ class ListCrime extends Component
             return false;
         }
 
-        $this->firstMaterial = \Cache::remember('list-crime-first', 60 * 10, function () use ($category) {
+        $this->firstMaterial = \Cache::remember('list-crime-first_' . RouteServiceProvider::getRegion(), 60 * 10, function () use ($category) {
             return UserMaterial::findMini($category, true)->first();
         });
         $limit = $limit - 1;
 
-        $this->secondMaterials = \Cache::remember('list-crime-second', 60 * 10, function () use ($category) {
+        $this->secondMaterials = \Cache::remember('list-crime-second_' . RouteServiceProvider::getRegion(), 60 * 10, function () use ($category) {
             return UserMaterial::findMini($category)
                 ->limit(2)
                 ->offset(1)
@@ -48,7 +49,7 @@ class ListCrime extends Component
         });
         $limit = $limit - 2;
 
-        $this->materials = \Cache::remember('list-crime-materials', 60 * 10, function () use ($category, $limit) {
+        $this->materials = \Cache::remember('list-crime-materials_' . RouteServiceProvider::getRegion(), 60 * 10, function () use ($category, $limit) {
             return UserMaterial::findMini($category, true)
                 ->offset(3)
                 ->limit($limit)

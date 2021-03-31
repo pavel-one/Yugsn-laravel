@@ -4,6 +4,7 @@ namespace App\View\Components\Index;
 
 use App\Models\MaterialCategory;
 use App\Models\UserMaterial;
+use App\Providers\RouteServiceProvider;
 use Illuminate\View\Component;
 
 class Columnistic extends Component
@@ -22,7 +23,7 @@ class Columnistic extends Component
         $this->categoryName = $categoryName;
         $this->category = $category = MaterialCategory::whereName($categoryName)->first();
 
-        $this->materials = \Cache::remember('index-columnistic', 60 * 10, function () use ($category) {
+        $this->materials = \Cache::remember('index-columnistic_' . RouteServiceProvider::getRegion(), 60 * 10, function () use ($category) {
             return UserMaterial::findMini($category, true)
                 ->limit(6)
                 ->get()

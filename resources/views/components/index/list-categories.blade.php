@@ -7,6 +7,10 @@
         $materials = \App\Models\UserMaterial::findMini($category, true)->limit(3)->get()->all();
     @endphp
 
+    @if(!$materials)
+        @continue
+    @endif
+
     @switch($loop->index)
         @case(1)
         <div class="saxon-postsmasonry1-block-wrapper saxon-block">

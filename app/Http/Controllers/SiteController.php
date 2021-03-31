@@ -36,10 +36,9 @@ class SiteController extends Controller
     public function test()
     {
         dd(
-            MaterialCategory::orderBy('sort')
-                ->whereNotIn('name', ['Криминал', 'Общество', 'Колумнистика'])
-                ->limit(2)
-                ->offset(0)
+            UserMaterial::findMini(MaterialCategory::first())
+                ->whereRaw("JSON_CONTAINS(regions, '\"22\"', '$')")
+                ->limit(10)
                 ->get()
                 ->all()
         );

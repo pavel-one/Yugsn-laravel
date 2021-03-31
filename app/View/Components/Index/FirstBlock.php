@@ -3,6 +3,7 @@
 namespace App\View\Components\Index;
 
 use App\Models\UserMaterial;
+use App\Providers\RouteServiceProvider;
 use Illuminate\View\Component;
 
 class FirstBlock extends Component
@@ -17,7 +18,7 @@ class FirstBlock extends Component
      */
     public function __construct()
     {
-        $materials_all = \Cache::remember('region_index_first_block', 60 * 10, function () {
+        $materials_all = \Cache::remember('region_index_first_block_' . RouteServiceProvider::getRegion(), 60 * 10, function () {
             return UserMaterial::findMini()
                 ->limit(5)
                 ->get()

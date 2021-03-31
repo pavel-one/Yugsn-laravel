@@ -4,6 +4,7 @@ namespace App\View\Components\Chunks;
 
 use App\Models\MaterialCategory;
 use App\Models\UserMaterial;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
@@ -46,7 +47,7 @@ class Sidebar extends Component
             ->get()
             ->all();
 
-        $this->populars = \Cache::remember('popular-mini', 60*10, function () {
+        $this->populars = \Cache::remember('popular-mini_' . RouteServiceProvider::getRegion(), 60*10, function () {
             return UserMaterial::findMini()
                 ->orderBy('views', 'desc')
                 ->limit(5)

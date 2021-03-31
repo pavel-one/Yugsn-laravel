@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Models\Region;
+use App\Providers\RouteServiceProvider;
 use Closure;
 use Illuminate\Http\Request;
 
@@ -17,15 +18,15 @@ class CheckRegion
      */
     public function handle(Request $request, Closure $next)
     {
-        $session = session();
-        if (!$session->has('region')) {
+        if (!$region = RouteServiceProvider::getRegion()) {
             return $next($request);
         }
 
-        if (Region::whereAlias($session->get('region'))->exists()) {
+        if (Region::whereAlias($region)->exists()) {
             return $next($request);
         }
 
+        RouteServiceProvider::setRegion();
         return redirect(\URL::formatScheme().env('APP_BASE_URL'));
     }
 }

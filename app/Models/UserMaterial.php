@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Providers\RouteServiceProvider;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -122,6 +123,10 @@ class UserMaterial extends Model implements HasMedia
             $query->where('category_id', $category->id);
         }
 
+        if ($region_id = RouteServiceProvider::getCurrentRegionId()) {
+            $query->whereRaw("JSON_CONTAINS(regions, '\"$region_id\"', '$')");
+        }
+
         return $query;
     }
 
@@ -190,7 +195,7 @@ class UserMaterial extends Model implements HasMedia
             return null;
         }
 
-        return URL::formatScheme().$region->alias.'.'.env('APP_BASE_URL');
+        return URL::formatScheme() . $region->alias . '.' . env('APP_BASE_URL');
     }
 
     /**
@@ -264,7 +269,7 @@ class UserMaterial extends Model implements HasMedia
      */
     private function getRegionObj(): ?Region
     {
-        $region = \Cache::remember('region-obj-id-'.$this->id, 60 * 10, function () {
+        $region = \Cache::remember('region-obj-id-' . $this->id, 60 * 10, function () {
             return Region::whereId($this->regions[0])->first();
         });
         if (!$region) {

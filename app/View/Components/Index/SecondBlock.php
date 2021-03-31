@@ -3,6 +3,7 @@
 namespace App\View\Components\Index;
 
 use App\Models\UserMaterial;
+use App\Providers\RouteServiceProvider;
 use Illuminate\View\Component;
 
 class SecondBlock extends Component
@@ -16,7 +17,7 @@ class SecondBlock extends Component
      */
     public function __construct()
     {
-        $this->materials = \Cache::remember('region_index_second_block', 60*10, function () {
+        $this->materials = \Cache::remember('region_index_second_block_' . RouteServiceProvider::getRegion(), 60*10, function () {
             return UserMaterial::findMini()
                 ->offset(5)
                 ->limit(4)
