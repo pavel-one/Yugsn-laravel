@@ -37,6 +37,9 @@ class FirstBlock extends Component
      */
     public function render()
     {
+        if (!$this->materials) {
+            return null;
+        }
         return view('components.index.first-block');
     }
 }

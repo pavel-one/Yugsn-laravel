@@ -65,6 +65,9 @@ class ListCrime extends Component
      */
     public function render()
     {
+        if (!$this->materials) {
+            return null;
+        }
         return view('components.index.list-crime', [
             'materials' => $this->materials,
             'first' => $this->firstMaterial,

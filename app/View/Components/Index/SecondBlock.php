@@ -33,6 +33,9 @@ class SecondBlock extends Component
      */
     public function render()
     {
+        if (!$this->materials) {
+            return null;
+        }
         return view('components.index.second-block', ['materials' => $this->materials]);
     }
 }

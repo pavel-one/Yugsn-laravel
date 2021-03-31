@@ -39,6 +39,9 @@ class Columnistic extends Component
      */
     public function render()
     {
+        if (!$this->materials) {
+            return null;
+        }
         return view('components.index.columnistic', [
             'category' => $this->category,
             'materials' => $this->materials

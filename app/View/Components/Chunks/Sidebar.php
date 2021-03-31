@@ -63,6 +63,9 @@ class Sidebar extends Component
      */
     public function render()
     {
+        if (!$this->miniMaterials) {
+            return null;
+        }
         return view('components.chunks.sidebar', [
             'materials' => $this->miniMaterials,
             'populars' => $this->populars,

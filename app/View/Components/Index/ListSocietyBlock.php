@@ -39,6 +39,9 @@ class ListSocietyBlock extends Component
      */
     public function render()
     {
+        if (!$this->materials) {
+            return null;
+        }
         return view('components.index.list-society-block', [
             'materials' => $this->materials,
             'category' => $this->category
