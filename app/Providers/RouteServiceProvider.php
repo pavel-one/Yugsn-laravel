@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Http\Middleware\CheckRegion;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
@@ -11,24 +12,6 @@ use Illuminate\Support\Facades\Route;
 class RouteServiceProvider extends ServiceProvider
 {
     /**
-     * The path to the "home" route for your application.
-     *
-     * This is used by Laravel authentication to redirect users after login.
-     *
-     * @var string
-     */
-    public const HOME = '/home';
-
-    /**
-     * The controller namespace for the application.
-     *
-     * When present, controller route declarations will automatically be prefixed with this namespace.
-     *
-     * @var string|null
-     */
-    // protected $namespace = 'App\\Http\\Controllers';
-
-    /**
      * Define your route model bindings, pattern filters, etc.
      *
      * @return void
@@ -37,15 +20,26 @@ class RouteServiceProvider extends ServiceProvider
     {
         $this->configureRateLimiting();
 
-        $this->routes(function () {
-//            Route::prefix('api')
-//                ->middleware('api')
-//                ->namespace($this->namespace)
-//                ->group(base_path('routes/api.php'));
+        $host = parse_url(\URL::current())['host'];
 
-            Route::middleware('web')
-                ->namespace($this->namespace)
-                ->group(base_path('routes/web.php'));
+        $region = null;
+        if (preg_match("/^[a-zA-Z]*\.[a-z]*\.[a-z]*/", $host) > 0) {
+            $region = explode('.', $host)[0];
+        }
+
+        if ($region) {
+            session()->put('region', $region);
+        }
+
+        $this->routes(function () use ($region) {
+            $routes = Route::middleware(['web', CheckRegion::class])
+                ->namespace($this->namespace);
+
+            if ($region) {
+                $routes->domain("$region.".env('APP_BASE_URL'));
+            }
+
+            $routes->group(base_path('routes/web.php'));
         });
     }
 

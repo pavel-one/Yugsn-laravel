@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Facades\URL;
 use Spatie\Image\Exceptions\InvalidManipulation;
 use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia;
@@ -58,6 +59,10 @@ class UserMaterial extends Model implements HasMedia
 {
     use HasFactory, HasSlug, InteractsWithMedia;
 
+    protected $casts = [
+        'regions' => 'array'
+    ];
+
     public const MINI_FIELDS = [
         'id',
         'user_id',
@@ -66,7 +71,8 @@ class UserMaterial extends Model implements HasMedia
         'published_time',
         'tags',
         'slug',
-        'views'
+        'views',
+        'regions'
     ];
 
     public const THUMB_SIZES = [
@@ -172,20 +178,37 @@ class UserMaterial extends Model implements HasMedia
 
     /**
      * Ссылка на регион
-     * @return string
+     * @return string|null
      */
-    public function getLinkRegion(): string
+    public function getLinkRegion(): ?string
     {
-        return '#';
+        if (!$this->regions) {
+            return null;
+        }
+        $region = $this->getRegionObj();
+        if (!$region) {
+            return null;
+        }
+
+        return URL::formatScheme().$region->alias.'.'.env('APP_BASE_URL');
     }
 
     /**
      * Отдает имя региона
-     * @return string
+     * @return string|null
      */
-    public function getNameRegion(): string
+    public function getNameRegion(): ?string
     {
-        return 'Регион';
+        if (!$this->regions) {
+            return null;
+        }
+
+        $region = $this->getRegionObj();
+        if (!$region) {
+            return null;
+        }
+
+        return $region->name;
     }
 
     /**
@@ -233,5 +256,21 @@ class UserMaterial extends Model implements HasMedia
             $this->addMediaConversion("thumb-$name")
                 ->fit(Manipulations::FIT_CROP, $size[0], $size[1]);
         }
+    }
+
+    /**
+     * Получает первый регион материала
+     * @return null
+     */
+    private function getRegionObj(): ?Region
+    {
+        $region = \Cache::remember('region-obj-id-'.$this->id, 60 * 10, function () {
+            return Region::whereId($this->regions[0])->first();
+        });
+        if (!$region) {
+            return null;
+        }
+
+        return $region;
     }
 }
