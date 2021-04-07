@@ -17,7 +17,9 @@ class SiteController extends Controller
     {
         $material = UserMaterial::whereSlug($slug)->first();
         if ($material) {
-            return $material;
+            return view('templates.material', [
+                'material' => $material
+            ]);
         }
 
         $category = MaterialCategory::whereSlug($slug)->first();

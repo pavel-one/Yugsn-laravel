@@ -217,6 +217,24 @@ class UserMaterial extends Model implements HasMedia
     }
 
     /**
+     * Ссылка на автора
+     * @return string
+     */
+    public function getAuthorLink(): string
+    {
+        return '#';
+    }
+
+    /**
+     * Имя автора материала
+     * @return string
+     */
+    public function getAuthorName(): string
+    {
+        return 'Администратор Администраторович';
+    }
+
+    /**
      * Отдает краткое содержание статьи
      * @param int $words - Количество слов
      * @param bool $html - Включить html теги

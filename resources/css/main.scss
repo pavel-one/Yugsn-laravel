@@ -1,0 +1,26 @@
+.post-template-default {
+    .post-categories a {
+        background-color: #4dcf8f;
+    }
+
+    .container-page-item-title .page-item-title-single .saxon-post-single .saxon-post-details .post-title {
+        color: #555;
+        margin: 10px 0;
+
+        &:hover {
+            color: #555;
+        }
+    }
+
+    .author-wrapper {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-items: center
+    }
+
+    .post-date {
+        color: #999;
+    }
+}

@@ -6025,7 +6025,7 @@ button.close {
   }
 }
 
-/* 
+/*
  *  Owl Carousel - Animate Plugin
  */
 
@@ -6067,19 +6067,18 @@ button.close {
   }
 }
 
-/* 
+/*
  * 	Owl Carousel - Auto Height Plugin
  */
 
 .owl-height {
   -webkit-transition: height 500ms ease-in-out;
   -moz-transition: height 500ms ease-in-out;
-  -ms-transition: height 500ms ease-in-out;
   -o-transition: height 500ms ease-in-out;
   transition: height 500ms ease-in-out;
 }
 
-/* 
+/*
  *  Core Owl Carousel CSS File
  */
 
@@ -6115,9 +6114,7 @@ button.close {
 
 .owl-carousel .owl-controls .owl-nav .owl-prev, .owl-carousel .owl-controls .owl-nav .owl-next, .owl-carousel .owl-controls .owl-dot {
   cursor: pointer;
-  cursor: hand;
   -webkit-user-select: none;
-  -khtml-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
@@ -6188,7 +6185,7 @@ button.close {
   display: block;
 }
 
-/* 
+/*
  * 	Owl Carousel - Lazy Load Plugin
  */
 
@@ -6205,7 +6202,7 @@ button.close {
   transform-style: preserve-3d;
 }
 
-/* 
+/*
  * 	Owl Carousel - Video Plugin
  */
 
@@ -6340,12 +6337,9 @@ a:focus {
   text-decoration: none;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
-  -khtml-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  outline-style: none;
-  outline: 0;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -8029,12 +8023,12 @@ li.icon-email a:before {
 }
 
 .single-post .page-item-title-single .saxon-post .saxon-post-details {
-  text-align: center;
+  text-align: left;
 }
 
 .single-post .page-item-title-single .saxon-post>.post-categories {
   margin-bottom: 0;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 /* Single Page title */
@@ -8111,7 +8105,7 @@ li.icon-email a:before {
 /* Title container with background image */
 
 .container-page-item-title.with-bg .page-item-title-single {
-  padding: 120px 0;
+  padding: 10px 0;
   margin: 0;
 }
 
@@ -17243,7 +17237,7 @@ html[dir="rtl"] .select2-container-multi .select2-search-choice-close {
  *
  * Vladimir Kharlampidi, The iDangero.us
  * http://www.idangero.us/
- * 
+ *
  * Copyright 2012-2013, Vladimir Kharlampidi
  * The iDangero.us
  * http://www.idangero.us
@@ -17253,7 +17247,7 @@ html[dir="rtl"] .select2-container-multi .select2-search-choice-close {
 */
 
 /* ===============================================================
-Basic Swiper Styles 
+Basic Swiper Styles
 ================================================================*/
 
 .swiper-container {
@@ -19945,7 +19939,7 @@ header .logo-link img {
   header .logo-link img {
     max-width: 200px;
   }
-  
+
 }
 
 .saxon-blog-posts-slider .saxon-post {
