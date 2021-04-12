@@ -21,11 +21,13 @@
                                  style="background-image: url({{$material->getFirstMediaUrl('default', 'thumb-small-vertical')}});">
                             </div>
                             <div class="saxon-post-details">
-                                <div class="post-categories">
-                                    <a href="{{ $material->getLinkRegion() }}" class="mark region">
-                                        {{ $material->getNameRegion() }}
-                                    </a>
-                                </div>
+                                @if($material->getNameRegion())
+                                    <div class="post-categories">
+                                        <a href="{{ $material->getLinkRegion() }}" class="mark region">
+                                            {{ $material->getNameRegion() }}
+                                        </a>
+                                    </div>
+                                @endif
                                 <div class="saxon-post-details-inner">
                                     <h3 class="post-title">
                                         <a href="{{ $material->getLink() }}">

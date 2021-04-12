@@ -11,9 +11,11 @@
                                 <a href="{{ $material->getLinkCategory() }}" class="mark category">
                                     {{ $material->getNameCategory() }}
                                 </a>
-                                <a href="{{ $material->getLinkRegion() }}" class="mark region">
-                                    {{ $material->getNameRegion() }}
-                                </a>
+                                @if($material->getNameRegion())
+                                    <a href="{{ $material->getLinkRegion() }}" class="mark region">
+                                        {{ $material->getNameRegion() }}
+                                    </a>
+                                @endif
                             </div>
                         </div>
                         <div class="saxon-post-details-inner">
