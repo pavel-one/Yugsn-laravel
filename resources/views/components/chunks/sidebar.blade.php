@@ -25,11 +25,13 @@
                                 </a>
                             </div>
                             <div class="saxon-post-details">
-                                <div class="post-categories">
-                                    <a href="{{ $material->getLinkRegion() }}" class="mark region">
-                                        {{ $material->getNameRegion() }}
-                                    </a>
-                                </div>
+                                @if($material->getNameRegion())
+                                    <div class="post-categories">
+                                        <a href="{{ $material->getLinkRegion() }}" class="mark region">
+                                            {{ $material->getNameRegion() }}
+                                        </a>
+                                    </div>
+                                @endif
                                 <h3 class="post-title">
                                     <a href="{{ $material->getLink() }}">
                                         {{ $material->title }}
@@ -104,9 +106,11 @@
                                     </div>
                                 </a>
                                 <div class="post-categories">
-                                    <a href="{{ $material->getLinkRegion() }}" class="mark region">
-                                        {{ $material->getNameRegion() }}
-                                    </a>
+                                    @if($material->getNameRegion())
+                                        <a href="{{ $material->getLinkRegion() }}" class="mark region">
+                                            {{ $material->getNameRegion() }}
+                                        </a>
+                                    @endif
                                     <a href="{{ $material->getLinkCategory() }}" class="mark category">
                                         {{ $material->getNameCategory() }}
                                     </a>

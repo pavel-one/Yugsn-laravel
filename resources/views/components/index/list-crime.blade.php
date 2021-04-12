@@ -25,7 +25,7 @@
                                  style="background-image: url({{$first->getFirstMediaUrl('default', 'thumb-normal-horizon')}});">
                             </div>
                         </a>
-                        @if($material->getNameRegion())
+                        @if($first->getNameRegion())
                             <div class="post-categories">
                                 <a href="{{ $first->getLinkRegion() }}" class="mark region">
                                     {{ $first->getNameRegion() }}
@@ -58,11 +58,13 @@
                                      style="background-image: url({{$material->getFirstMediaUrl('default', 'thumb-normal')}});">
                                 </div>
                             </a>
-                            <div class="post-categories">
-                                <a href="{{ $material->getLinkRegion() }}" class="mark region">
-                                    {{ $material->getNameRegion() }}
-                                </a>
-                            </div>
+                            @if($material->getNameRegion())
+                                <div class="post-categories">
+                                    <a href="{{ $material->getLinkRegion() }}" class="mark region">
+                                        {{ $material->getNameRegion() }}
+                                    </a>
+                                </div>
+                            @endif
                         </div>
                         <div class="saxon-post-details">
 
