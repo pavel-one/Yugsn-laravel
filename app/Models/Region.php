@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\URL;
 
 /**
  * App\Models\Region
@@ -30,5 +31,10 @@ class Region extends Model
     public static function table(): string
     {
         return (new self())->getTable();
+    }
+
+    public function getLink(): string
+    {
+        return URL::formatScheme() . $this->alias . '.' . env('APP_BASE_URL');
     }
 }

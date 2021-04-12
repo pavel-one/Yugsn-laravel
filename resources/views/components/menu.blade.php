@@ -1,3 +1,7 @@
+@php
+/** @var \App\Models\Region[] $regions */
+@endphp
+
 <header class="main-header clearfix sticky-header">
     <div class="container">
         <div class="row">
@@ -55,7 +59,7 @@
                                                                     @foreach($region_category->regions as $region)
                                                                         <li id="mgt-menu-item-536"
                                                                             class="menu-item menu-item-type-custom menu-item-object-custom">
-                                                                            <a href="{{$region->alias}}">{{$region->name}}</a>
+                                                                            <a href="{{$region->getLink()}}">{{$region->name}}</a>
                                                                         </li>
                                                                     @endforeach
                                                                 </ul>
