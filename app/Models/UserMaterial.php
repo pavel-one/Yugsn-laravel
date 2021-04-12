@@ -217,6 +217,15 @@ class UserMaterial extends Model implements HasMedia
     }
 
     /**
+     * Фото на автора материала
+     * @return string
+     */
+    public function getAuthorPhoto(): string
+    {
+        return 'https://www.gravatar.com/avatar/89d60c38d59a44e98491064af163ec68?s=28&amp;d=mm';
+    }
+
+    /**
      * Ссылка на автора
      * @return string
      */
