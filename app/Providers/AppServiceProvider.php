@@ -7,6 +7,8 @@ use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
+    const DEFAULT_CACHE_TIMES = 60 * 10;
+
     /**
      * Register any application services.
      *

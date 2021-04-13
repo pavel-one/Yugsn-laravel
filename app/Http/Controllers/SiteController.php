@@ -5,15 +5,25 @@ namespace App\Http\Controllers;
 use App\Models\MaterialCategory;
 use App\Models\User;
 use App\Models\UserMaterial;
+use App\Providers\AppServiceProvider;
 use Illuminate\Http\Request;
 
 class SiteController extends Controller
 {
+    /**
+     * Главная страница
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function index()
     {
         return view('templates.index');
     }
 
+    /**
+     * Страница категории или материала
+     * @param string $slug
+     * @return MaterialCategory|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model|object|void
+     */
     public function categoryOrMaterial(string $slug)
     {
         $material = UserMaterial::whereSlug($slug)->first();
@@ -31,16 +41,66 @@ class SiteController extends Controller
         return abort(404);
     }
 
+    /**
+     * Страница ленты новостей
+     * @return string
+     */
     public function news()
     {
         return 'В разработке';
     }
 
-    public function tags(string $tag)
+
+    /**
+     * Страница поиска
+     * TODO: Доработать [POST] и логику
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    public function search(Request $request)
     {
-        dd($tag);
+        $search = $request->get('query');
+        if (strlen($search) < 5) {
+            abort(400, 'Запрос должен быть больше трех символов');
+        }
+
+        $materials = \Cache::remember('search_' . $search, AppServiceProvider::DEFAULT_CACHE_TIMES, function () use ($search) {
+            return UserMaterial::findMini(null, true)
+                ->where('title', 'like', '%' . $search . '%')
+                ->limit(100)
+                ->paginate(UserMaterial::DEFAULT_PER_PAGE);
+        });
+
+        return view('templates.search', [
+            'materials' => $materials
+        ]);
     }
 
+    /**
+     * Страница тега
+     * TODO: Доработать логику, сделать выборку JSON
+     * @param string $tag
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    public function tags(string $tag)
+    {
+        $materials = \Cache::remember('tag_' . $tag, AppServiceProvider::DEFAULT_CACHE_TIMES, function () use ($tag) {
+            return UserMaterial::findMini(null, true)
+                ->where('tags', 'like', '%' . $tag . '%')
+                ->limit(100)
+                ->paginate(UserMaterial::DEFAULT_PER_PAGE);
+        });
+
+        return view('templates.search', [
+            'materials' => $materials
+        ]);
+    }
+
+    /**
+     * Страница пользователя
+     * @param string $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function user(string $id)
     {
         $id = (int)\Crypt::decryptString($id);

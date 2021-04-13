@@ -65,6 +65,8 @@ class UserMaterial extends Model implements HasMedia
         'tags' => 'array'
     ];
 
+    public const DEFAULT_PER_PAGE = 18;
+
     public const MINI_FIELDS = [
         'id',
         'user_id',
