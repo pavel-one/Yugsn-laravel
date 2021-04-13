@@ -1,5 +1,6 @@
 @php
     /** @var \App\Models\User $user */
+    /** @var \App\Models\UserMaterial[] $materials */
 @endphp
 
 @extends('layouts.base')
@@ -21,4 +22,5 @@
             </div>
         </div>
     </div>
+    @include('components.chunks.simple-list')
 @endsection

@@ -46,13 +46,14 @@ class SiteController extends Controller
         $id = (int) \Crypt::decryptString($id);
         $user = User::whereId($id)->firstOrFail();
 
-        $materials = UserMaterial::findMini()->where([
+        $materials = UserMaterial::findMini(null, true)->where([
             'user_id' => $user->id
         ]);
 
         return view('templates.user', [
             'count' => \DeclensionNoun::make($materials->count(), 'запись'),
-            'materials' => $materials
+            'materials' => $materials->paginate(18),
+            'user' => $user
         ]);
     }
 

@@ -11,6 +11,7 @@ use Illuminate\View\Component;
 class Sidebar extends Component
 {
     public const TYPE_INDEX = 1;
+    public const TYPE_MATERIAL = 2;
 
     private ?string $categoryName;
     /** @var MaterialCategory  */

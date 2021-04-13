@@ -24,3 +24,8 @@
         color: #999;
     }
 }
+
+
+.pagination > .disabled > span.page-link {
+    border-color: transparent;
+}
