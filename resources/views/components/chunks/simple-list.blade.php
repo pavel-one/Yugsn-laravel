@@ -14,8 +14,10 @@
                         @if($loop->first || ($loop->index % 3) === 0)
                             <div class="blog-post saxon-block saxon-mixed-large-grid-post aos-init aos-animate"
                                  data-aos="fade-up">
-                                <article class="post type-post status-publish format-standard has-post-thumbnail hentry">
-                                    <div class="saxon-grid-post saxon-grid-large-post saxon-post format- aos-init aos-animate"
+                                <article
+                                    class="post type-post status-publish format-standard has-post-thumbnail hentry">
+                                    <div
+                                        class="saxon-grid-post saxon-grid-large-post saxon-post format- aos-init aos-animate"
                                         data-aos="fade-up">
                                         <div class="saxon-post-image-wrapper">
                                             <a href="{{ $material->getLink() }}">
@@ -48,9 +50,11 @@
                         @else
                             <div class="blog-post saxon-block saxon-mixed-large-grid-post aos-init aos-animate"
                                  data-aos="fade-up">
-                                <article class="post type-post status-publish format-standard has-post-thumbnail hentry">
-                                    <div class="saxon-grid-post saxon-grid-large-post saxon-post format- aos-init aos-animate"
-                                         data-aos="fade-up">
+                                <article
+                                    class="post type-post status-publish format-standard has-post-thumbnail hentry">
+                                    <div
+                                        class="saxon-grid-post saxon-grid-large-post saxon-post format- aos-init aos-animate"
+                                        data-aos="fade-up">
                                         <div class="saxon-post-image-wrapper">
                                             <a href="{{ $material->getLink() }}">
                                                 <div class="saxon-post-image"
@@ -86,6 +90,6 @@
             @endif
         </div>
 
-        <x-chunks.sidebar categoryName="Наука" type="1"></x-chunks.sidebar>
+        <x-chunks.sidebar type="{{ \App\View\Components\Chunks\Sidebar::TYPE_MATERIAL }}"></x-chunks.sidebar>
     </div>
 </div>

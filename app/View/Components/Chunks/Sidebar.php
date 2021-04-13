@@ -14,7 +14,7 @@ class Sidebar extends Component
     public const TYPE_MATERIAL = 2;
 
     private ?string $categoryName;
-    /** @var MaterialCategory  */
+    /** @var MaterialCategory */
     private $category;
     private int $type;
 
@@ -48,7 +48,7 @@ class Sidebar extends Component
             ->get()
             ->all();
 
-        $this->populars = \Cache::remember('popular-mini_' . RouteServiceProvider::getRegion(), 60*10, function () {
+        $this->populars = \Cache::remember('popular-mini_' . RouteServiceProvider::getRegion(), 60 * 10, function () {
             return UserMaterial::findMini()
                 ->orderBy('views', 'desc')
                 ->limit(5)
