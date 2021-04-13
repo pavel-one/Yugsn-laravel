@@ -11,7 +11,7 @@
                                                                                     aria-hidden="true"></i></div>
                     <div class="logo">
                         <a class="logo-link" href="/">
-                            <img srcset="img/logo_2x.png 2x" src="img/logo.png" alt="южная служба новостей лого"
+                            <img srcset="/img/logo_2x.png 2x" src="/img/logo.png" alt="южная служба новостей лого"
                                  class="regular-logo">
                         </a>
                     </div>

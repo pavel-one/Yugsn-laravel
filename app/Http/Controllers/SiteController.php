@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\MaterialCategory;
+use App\Models\User;
 use App\Models\UserMaterial;
 use Illuminate\Http\Request;
 
@@ -42,7 +43,11 @@ class SiteController extends Controller
 
     public function user(string $id)
     {
-        dd(\Crypt::decryptString($id));
+        $id = (int) \Crypt::decryptString($id);
+
+        return view('templates.user', [
+            'user' => User::whereId($id)->firstOrFail()
+        ]);
     }
 
     public function test()
