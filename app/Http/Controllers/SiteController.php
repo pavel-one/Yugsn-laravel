@@ -43,16 +43,18 @@ class SiteController extends Controller
 
     public function user(string $id)
     {
-        $id = (int) \Crypt::decryptString($id);
+        $id = (int)\Crypt::decryptString($id);
         $user = User::whereId($id)->firstOrFail();
 
-        $materials = UserMaterial::findMini(null, true)->where([
-            'user_id' => $user->id
-        ]);
+        $materials = \Cache::remember('user_materials_' . $user->id, 60 * 10, function () use ($user) {
+            return UserMaterial::findMini(null, true)->where([
+                'user_id' => $user->id
+            ])->paginate(18);
+        });
 
         return view('templates.user', [
             'count' => \DeclensionNoun::make($materials->count(), 'запись'),
-            'materials' => $materials->paginate(18),
+            'materials' => $materials,
             'user' => $user
         ]);
     }
