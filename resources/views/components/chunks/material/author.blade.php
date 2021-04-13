@@ -7,7 +7,8 @@
 <div class="author-bio aos-init aos-animate" data-aos="fade-up">
     <div class="author-image">
         <a href="{{ $user->getLink() }}">
-            <img src="https://www.gravatar.com/avatar/c2a482ace9da936b9c4c7e6c0afc74c9?s=170&amp;d=mm" class="avatar avatar-post photo">
+            <img src="https://www.gravatar.com/avatar/c2a482ace9da936b9c4c7e6c0afc74c9?s=170&amp;d=mm"
+                 class="avatar avatar-post photo">
         </a>
     </div>
     <div class="author-info">
@@ -17,9 +18,11 @@
                 {{ $user->getAuthorName() }}
             </a>
         </h3>
-        <div class="author-description">
-            test
-        </div>
+        @if ($user->description)
+            <div class="author-description">
+                {{ $user->description }}
+            </div>
+        @endif
 
     </div>
     <div class="clear"></div>

@@ -27,12 +27,12 @@ use Spatie\Sluggable\SlugOptions;
  * @property string|null $content
  * @property int $published
  * @property \Illuminate\Support\Carbon|null $published_time
- * @property mixed|null $tags
+ * @property array|null $tags
  * @property string $slug
  * @property int $views
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property mixed|null $regions
+ * @property array|null $regions
  * @property-read \App\Models\MaterialCategory $category
  * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection|Media[] $media
  * @property-read int|null $media_count
@@ -271,6 +271,28 @@ class UserMaterial extends Model implements HasMedia
             $this->addMediaConversion("thumb-$name")
                 ->fit(Manipulations::FIT_CROP, $size[0], $size[1]);
         }
+    }
+
+    /**
+     * Получить предыдущий материал
+     * @return UserMaterial|null
+     */
+    public function getPreviewMaterial(): ?UserMaterial
+    {
+        return self::findMini($this->category)->whereRaw(
+            "published_time < (select published_time from user_materials where id = {$this->id})"
+        )->first();
+    }
+
+    /**
+     * Получить следующий материал
+     * @return UserMaterial|null
+     */
+    public function getNextMaterial(): ?UserMaterial
+    {
+        return self::findMini($this->category)->whereRaw(
+            "published_time > (select published_time from user_materials where id = {$this->id})"
+        )->first();
     }
 
     /**
