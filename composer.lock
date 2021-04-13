@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d41fe825f4e56488c979d507c0bd043a",
+    "content-hash": "b1a5a7d3523e6976d44e5e2911cc238d",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -879,6 +879,52 @@
                 }
             ],
             "time": "2020-11-24T19:55:57+00:00"
+        },
+        {
+            "name": "drandin/declension-nouns",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/drandin/declension-nouns.git",
+                "reference": "ab482f7c3a446741bf1625c659ac9873495b3467"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/drandin/declension-nouns/zipball/ab482f7c3a446741bf1625c659ac9873495b3467",
+                "reference": "ab482f7c3a446741bf1625c659ac9873495b3467",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.3"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Drandin\\DeclensionNouns\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Igor Drandin",
+                    "email": "idrandin@gmail.com"
+                }
+            ],
+            "description": "Declension nouns for Laravel.",
+            "keywords": [
+                "declension",
+                "laravel",
+                "noun"
+            ],
+            "support": {
+                "issues": "https://github.com/drandin/declension-nouns/issues",
+                "source": "https://github.com/drandin/declension-nouns/tree/master"
+            },
+            "time": "2020-09-12T07:28:50+00:00"
         },
         {
             "name": "egulias/email-validator",
@@ -10050,11 +10096,13 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "drandin/declension-nouns": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "^7.3|^8.0",
+        "php": "^7.4|^8.0",
         "ext-json": "*"
     },
     "platform-dev": [],

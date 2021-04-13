@@ -175,6 +175,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\NovaServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        Drandin\DeclensionNouns\DeclensionNounsServiceProvider::class
 
     ],
 
@@ -227,6 +228,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'DeclensionNoun' => \Drandin\DeclensionNouns\Facades\DeclensionNoun::class
 
     ],
 

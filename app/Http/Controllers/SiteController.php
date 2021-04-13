@@ -44,9 +44,15 @@ class SiteController extends Controller
     public function user(string $id)
     {
         $id = (int) \Crypt::decryptString($id);
+        $user = User::whereId($id)->firstOrFail();
+
+        $materials = UserMaterial::findMini()->where([
+            'user_id' => $user->id
+        ]);
 
         return view('templates.user', [
-            'user' => User::whereId($id)->firstOrFail()
+            'count' => \DeclensionNoun::make($materials->count(), 'запись'),
+            'materials' => $materials
         ]);
     }
 
