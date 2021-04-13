@@ -40,6 +40,11 @@ class SiteController extends Controller
         dd($tag);
     }
 
+    public function user(string $id)
+    {
+        dd(\Crypt::decryptString($id));
+    }
+
     public function test()
     {
         dd(

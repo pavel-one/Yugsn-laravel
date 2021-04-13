@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [SiteController::class, 'index'])->name('index');
 Route::get('/news', [SiteController::class, 'news'])->name('news');
 Route::get('/tag/{tag}', [SiteController::class, 'tags'])->name('tag');
+Route::get('/user/{id}', [SiteController::class, 'user'])->name('user');
 
 Route::get('/test', [SiteController::class, 'test']); //TODO: Удалить
 

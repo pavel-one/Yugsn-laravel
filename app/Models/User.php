@@ -61,4 +61,18 @@ class User extends Authenticatable
     {
         return $this->hasMany(UserMaterial::class, 'user_id', 'id');
     }
+
+    public function getLink(): string
+    {
+        return route('user', \Crypt::encryptString($this->id));
+    }
+
+    /**
+     * Имя автора материала
+     * @return string
+     */
+    public function getAuthorName(): string
+    {
+        return $this->name ?? 'Скрыто';
+    }
 }
