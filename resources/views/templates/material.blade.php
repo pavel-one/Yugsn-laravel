@@ -14,7 +14,8 @@
                 <div class="page-item-title-single" style="padding: 10px 0">
                     <div class="saxon-post-single saxon-post aos-init aos-animate" data-aos="fade-up">
                         <div class="post-categories" style="justify-content: flex-start">
-                            <a href="{{ $material->getLinkCategory() }}" data-style="background-color: #4dcf8f;" style="background-color: #4dcf8f;">
+                            <a href="{{ $material->getLinkCategory() }}" data-style="background-color: #4dcf8f;"
+                               style="background-color: #4dcf8f;">
                                 {{ $material->getNameCategory() }}
                             </a>
                         </div>
@@ -22,14 +23,17 @@
                             <h1 class="post-title" style="color: #555; margin: 10px 0">
                                 {{ $material->long_title ?? $material->title }}
                             </h1>
-                            <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start; align-items: center">
+                            <div
+                                style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start; align-items: center">
                                 <div class="post-author">
                                     <div class="post-author-image">
                                         <a href="{{ $material->getAuthorLink() }}">
-                                            <img src="{{ $material->getAuthorPhoto() }}" class="avatar avatar-28 photo" height="28" width="28">
+                                            <img src="{{ $material->getAuthorPhoto() }}" class="avatar avatar-28 photo"
+                                                 height="28" width="28">
                                         </a>
                                     </div>
-                                    <a style="display: inline-block; color: #555" href="{{ $material->getAuthorLink() }}">
+                                    <a style="display: inline-block; color: #555"
+                                       href="{{ $material->getAuthorLink() }}">
                                         {{ $material->getAuthorName() }}
                                     </a>
                                 </div>
@@ -55,53 +59,28 @@
                                     {!! $material->content !!}
                                 </div>
 
-                                <div class="saxon-social-share-fixed sidebar-position-right">
-                                    <div class="post-social-wrapper">
-                                        <div class="post-social-title">Поделиться:</div>
-                                        <div class="post-social">
-                                            <a title="Поделиться через Вконтакте"
-                                               href="{{ $material->getLink() }}" data-type="vk"
-                                               data-title="{{ $material->title }}"
-                                               class="vk-share"> <i class="fa fa-vk"></i>
-                                            </a>
-                                            <a title="Поделиться через Facebook"
-                                               href="{{ $material->getLink() }}" data-type="fb"
-                                               data-title="{{ $material->title }}"
-                                               class="facebook-share"> <i class="fa fa-facebook"></i>
-                                            </a>
-                                            <a title="Поделиться через Twitter"
-                                               href="{{ $material->getLink() }}" data-type="twitter"
-                                               data-title="{{ $material->title }}"
-                                               class="twitter-share"> <i class="fa fa-twitter"></i>
-                                            </a>
-                                            <a title="Поделиться через LinkedIn"
-                                               href="{{ $material->getLink() }}" data-type="linkedin"
-                                               data-title="{{ $material->title }}"
-                                               class="linkedin-share"> <i class="fa fa-linkedin"></i>
-                                            </a>
-                                        </div>
-                                        <div class="clear"></div>
-                                    </div>
-                                </div>
+                                @include('components.chunks.share')
                             </div>
                         </div>
                     </article>
                     <div class="saxon-post saxon-post-bottom">
                         <div class="post-details-bottom">
                             <div class="post-info-tags">
-                                <div class="tags clearfix">
-                                    <a href="/tag/?tag=%D0%96%D0%B8%D0%BB%D1%8C%D0%B5" rel="tag">Жилье</a>
-                                    <a href="/tag/?tag=%D0%97%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0"
-                                       rel="tag">Застройка</a>
-                                    <a href="/tag/?tag=%D0%9A%D0%BE%D0%BC%D0%BF%D0%BB%D0%B5%D0%BA%D1%81" rel="tag">Комплекс</a>
-                                </div>
+                                @if ($material->tags)
+                                    <div class="tags clearfix">
+                                        <a href="/tag/?tag=%D0%96%D0%B8%D0%BB%D1%8C%D0%B5" rel="tag">Жилье</a>
+                                        <a href="/tag/?tag=%D0%97%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0"
+                                           rel="tag">Застройка</a>
+                                        <a href="/tag/?tag=%D0%9A%D0%BE%D0%BC%D0%BF%D0%BB%D0%B5%D0%BA%D1%81" rel="tag">Комплекс</a>
+                                    </div>
+                                @endif
                             </div>
 
                             <div class="post-info-wrapper">
                                 <div class="post-info-comments"
                                      style="display: flex; flex-direction: row; align-items: center">
                                     <i class="fa fa-comment-o" aria-hidden="true"></i>
-                                    <a href="/v-dagestane-reshili-kompleksno-stroit-zhile/#comments">0</a>
+                                    <a href="#comments">0</a>
                                 </div>
 
                                 <div class="post-info-views"

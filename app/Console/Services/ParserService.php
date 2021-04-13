@@ -219,6 +219,18 @@ class ParserService
      */
     public function formatMaterial(array $material): array
     {
+        $tags = [];
+
+        if ($material['tags']) {
+            $arr = explode(',', $material['tags']);
+            foreach ($arr as $tag) {
+                if (!$tag) {
+                    continue;
+                }
+                $tags[] = ucfirst(str_replace(' ', '', $tag));
+            }
+        }
+
         return [
             'title' => $material['title'] ?? 'Не задано',
             'user_id' => 1,
@@ -227,6 +239,7 @@ class ParserService
             'published' => (bool)$material['published'],
             'regions' => ($material['regions'] === '') ? null : $material['regions'],
             'views' => (int)$material['views'],
+            'tags' => $tags,
             'created_at' => Carbon::createFromTimestamp($material['createdon']),
             'published_time' => Carbon::createFromTimestamp($material['publishedon']),
             'content' => $this->getContent((int)$material['id']),

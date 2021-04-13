@@ -61,7 +61,8 @@ class UserMaterial extends Model implements HasMedia
     use HasFactory, HasSlug, InteractsWithMedia;
 
     protected $casts = [
-        'regions' => 'array'
+        'regions' => 'array',
+        'tags' => 'array'
     ];
 
     public const MINI_FIELDS = [
