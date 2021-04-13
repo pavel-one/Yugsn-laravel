@@ -13,12 +13,12 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('/', [SiteController::class, 'index'])->name('index');
 Route::get('/news', [SiteController::class, 'news'])->name('news');
+Route::get('/tag/{tag}', [SiteController::class, 'tags'])->name('tag');
 
 Route::get('/test', [SiteController::class, 'test']); //TODO: Удалить
 
-Route::get('/', [SiteController::class, 'index'])->name('index');
 Route::get('/{slug}', [SiteController::class, 'categoryOrMaterial'])
     ->name('category.material');
 

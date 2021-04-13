@@ -68,10 +68,9 @@
                             <div class="post-info-tags">
                                 @if ($material->tags)
                                     <div class="tags clearfix">
-                                        <a href="/tag/?tag=%D0%96%D0%B8%D0%BB%D1%8C%D0%B5" rel="tag">Жилье</a>
-                                        <a href="/tag/?tag=%D0%97%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0"
-                                           rel="tag">Застройка</a>
-                                        <a href="/tag/?tag=%D0%9A%D0%BE%D0%BC%D0%BF%D0%BB%D0%B5%D0%BA%D1%81" rel="tag">Комплекс</a>
+                                        @foreach ($material->tags as $tag)
+                                            <a href="{{ route('tag', urlencode($tag)) }}" rel="tag">{{$tag}}</a>
+                                        @endforeach
                                     </div>
                                 @endif
                             </div>

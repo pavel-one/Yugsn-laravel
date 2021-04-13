@@ -35,6 +35,11 @@ class SiteController extends Controller
         return 'В разработке';
     }
 
+    public function tags(string $tag)
+    {
+        dd($tag);
+    }
+
     public function test()
     {
         dd(
