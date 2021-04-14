@@ -91,13 +91,14 @@
                 </div>
                 <div class="header-right">
                     <div class="search-toggle-wrapper search-header">
-                        <form method="get" role="search" id="searchform_p" class="searchform" action="">
-                            <input type="search" aria-label="Search" class="field" name="s" value="" id="s_p"
-                                   placeholder="Type keyword(s) here…">
-                            <input type="submit" class="submit btn" id="searchsubmit_p" value="Search">
+                        <form method="POST" role="search" class="searchform" action="{{ route('search') }}">
+                            @csrf
+                            <input type="search" class="field" name="query" placeholder="Введите запрос здесь">
+                            <input type="submit" class="submit btn" value="Найти">
                         </form>
-                        <a class="search-toggle-btn" aria-label="Search toggle"><i class="fa fa-search"
-                                                                                   aria-hidden="true"></i></a>
+                        <a class="search-toggle-btn" aria-label="Search toggle">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                        </a>
                     </div>
                 </div>
             </div>

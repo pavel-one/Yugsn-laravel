@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SiteController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,9 +16,11 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('/', [SiteController::class, 'index'])->name('index');
 Route::get('/news', [SiteController::class, 'news'])->name('news');
-Route::get('/tag/{tag}', [SiteController::class, 'tags'])->name('tag');
 Route::get('/user/{id}', [SiteController::class, 'user'])->name('user');
-Route::get('/search/', [SiteController::class, 'search'])->name('search');
+
+Route::get('/tag/{tag}', [SearchController::class, 'tags'])->name('tag');
+Route::post('/search/', [SearchController::class, 'search'])->name('search');
+Route::post('/search/api/', [SearchController::class, 'searchApi'])->name('search.api');
 
 Route::get('/test', [SiteController::class, 'test']); //TODO: Удалить
 
