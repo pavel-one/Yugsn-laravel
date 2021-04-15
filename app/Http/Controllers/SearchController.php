@@ -16,8 +16,8 @@ class SearchController extends Controller
      */
     public function search(Request $request)
     {
-        $search = $request->post('query');
-        if (strlen($search) < 3) {
+        $search = urldecode($request->post('query'));
+        if (mb_strlen($search) < 3) {
             return $this->error('Запрос должен быть больше трех символов');
         }
 
