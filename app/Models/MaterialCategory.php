@@ -21,6 +21,7 @@ use Spatie\Sluggable\SlugOptions;
  * @property int $sort
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\UserMaterial[] $materials
  * @property-read int|null $materials_count
+ * @method static \Database\Factories\MaterialCategoryFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|MaterialCategory newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|MaterialCategory newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|MaterialCategory query()

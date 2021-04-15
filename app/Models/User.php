@@ -17,12 +17,13 @@ use Illuminate\Notifications\Notifiable;
  * @property string $password
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property string $photo
- * @property string $description
+ * @property string|null $photo
+ * @property string|null $description
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\UserMaterial[] $materials
  * @property-read int|null $materials_count
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  * @property-read int|null $notifications_count
+ * @method static \Database\Factories\UserFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User query()

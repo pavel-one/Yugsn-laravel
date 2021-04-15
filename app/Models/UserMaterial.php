@@ -37,6 +37,7 @@ use Spatie\Sluggable\SlugOptions;
  * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection|Media[] $media
  * @property-read int|null $media_count
  * @property-read \App\Models\User|null $user
+ * @method static \Database\Factories\UserMaterialFactory factory(...$parameters)
  * @method static Builder|UserMaterial newModelQuery()
  * @method static Builder|UserMaterial newQuery()
  * @method static Builder|UserMaterial query()
