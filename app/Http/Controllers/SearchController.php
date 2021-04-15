@@ -29,7 +29,8 @@ class SearchController extends Controller
         });
 
         return view('templates.search', [
-            'materials' => $materials
+            'materials' => $materials,
+            'query' => $search
         ]);
     }
 
