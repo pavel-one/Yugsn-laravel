@@ -36,8 +36,7 @@
         "mockery/mockery": "^1.4.2",
         "nunomaduro/collision": "^5.0",
         "phpunit/phpunit": "^9.3.3",
-        "psalm/plugin-laravel": "^1.4",
-        "vimeo/psalm": "^4.7"
+        "psalm/plugin-laravel": "^1.4"
     },
     "config": {
         "optimize-autoloader": true,

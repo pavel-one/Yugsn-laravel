@@ -93,7 +93,7 @@
                     <div class="search-toggle-wrapper search-header">
                         <form method="POST" role="search" class="searchform" action="{{ route('search') }}">
                             @csrf
-                            <input type="search" class="field" name="query" placeholder="Введите запрос здесь">
+                            <input type="search" class="field" id="search" name="query" placeholder="Введите запрос здесь">
                             <input type="submit" class="submit btn" value="Найти">
                         </form>
                         <a class="search-toggle-btn" aria-label="Search toggle">

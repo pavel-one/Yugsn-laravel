@@ -40,11 +40,14 @@ class SearchController extends Controller
             return $this->api_error('Запрос должен быть больше трех символов');
         }
 
-        return \Cache::remember('search_api_' . $search, AppServiceProvider::DEFAULT_CACHE_TIMES, function () use ($search) {
+        return response()->json(\Cache::remember('search_api_' . $search, AppServiceProvider::DEFAULT_CACHE_TIMES, function () use ($search) {
             return UserMaterial::findMini(null, true)
+                ->select('id', 'title')
                 ->where('title', 'like', '%' . $search . '%')
-                ->limit(20);
-        });
+                ->limit(20)
+                ->get()
+                ->all();
+        }));
     }
 
 

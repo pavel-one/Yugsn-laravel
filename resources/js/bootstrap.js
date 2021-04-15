@@ -2,7 +2,7 @@
 // window.axios = require('axios');
 // require('jquery')
 
-import $ from 'jquery';
+import $ from 'jquery'
 import aos from 'aos'
 
 global.jQuery = $;
