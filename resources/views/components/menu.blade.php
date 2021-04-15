@@ -91,8 +91,7 @@
                 </div>
                 <div class="header-right">
                     <div class="search-toggle-wrapper search-header">
-                        <form method="POST" role="search" class="searchform" action="{{ route('search') }}">
-                            @csrf
+                        <form method="GET" role="search" class="searchform" action="{{ route('search') }}">
                             <input type="search" class="field" id="search" name="query" placeholder="Введите запрос здесь">
                             <input type="submit" class="submit btn" value="Найти">
                         </form>

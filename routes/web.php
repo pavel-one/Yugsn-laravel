@@ -19,7 +19,7 @@ Route::get('/news', [SiteController::class, 'news'])->name('news');
 Route::get('/user/{id}', [SiteController::class, 'user'])->name('user');
 
 Route::get('/tag/{tag}', [SearchController::class, 'tags'])->name('tag');
-Route::post('/search/', [SearchController::class, 'search'])->name('search');
+Route::get('/search/', [SearchController::class, 'search'])->name('search');
 Route::post('/search/api/', [SearchController::class, 'searchApi'])->name('search.api');
 
 Route::get('/test', [SiteController::class, 'test']); //TODO: Удалить

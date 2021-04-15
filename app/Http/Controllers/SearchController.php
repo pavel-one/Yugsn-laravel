@@ -16,7 +16,7 @@ class SearchController extends Controller
      */
     public function search(Request $request)
     {
-        $search = urldecode($request->post('query'));
+        $search = urldecode($request->get('query'));
         if (mb_strlen($search) < 3) {
             return $this->error('Запрос должен быть больше трех символов');
         }
@@ -36,13 +36,13 @@ class SearchController extends Controller
     public function searchApi(Request $request)
     {
         $search = $request->post('query');
-        if (strlen($search) < 3) {
+        if (mb_strlen($search) < 3) {
             return $this->api_error('Запрос должен быть больше трех символов');
         }
 
         return response()->json(\Cache::remember('search_api_' . $search, AppServiceProvider::DEFAULT_CACHE_TIMES, function () use ($search) {
             return UserMaterial::findMini(null, true)
-                ->select('id', 'title')
+                ->select('id', 'title', 'slug')
                 ->where('title', 'like', '%' . $search . '%')
                 ->limit(20)
                 ->get()

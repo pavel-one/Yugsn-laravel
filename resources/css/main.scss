@@ -32,3 +32,12 @@
 #autoComplete_list {
     position: relative;
 }
+.autoComplete_result {
+    font-size: .9em;
+}
+header .search-toggle-wrapper.search-header:hover .searchform {
+    width: 320px;
+}
+header .search-toggle-wrapper .field {
+    width: 100%;
+}
