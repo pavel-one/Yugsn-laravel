@@ -299,6 +299,18 @@ class UserMaterial extends Model implements HasMedia
     }
 
     /**
+     * Парсит теги материала
+     * @return bool
+     */
+    public function parseTags(): bool
+    {
+        //TODO: Сделать парсинг тегов в тбалицу
+        //TODO: Это должно происходить при сохранении ресурса, событие? Очередь?
+
+        return true;
+    }
+
+    /**
      * Получает первый регион материала
      * @return null
      */
