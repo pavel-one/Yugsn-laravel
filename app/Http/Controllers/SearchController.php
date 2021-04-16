@@ -23,7 +23,6 @@ class SearchController extends Controller
         $materials = \Cache::remember('search_' . $search, AppServiceProvider::DEFAULT_CACHE_TIMES, function () use ($search) {
             return UserMaterial::findMini(null, true)
                 ->where('title', 'like', '%' . $search . '%')
-                ->limit(100)
                 ->paginate(UserMaterial::DEFAULT_PER_PAGE);
         });
 
@@ -61,7 +60,6 @@ class SearchController extends Controller
         $materials = \Cache::remember('tag_' . $tag, AppServiceProvider::DEFAULT_CACHE_TIMES, function () use ($tag) {
             return UserMaterial::findMini(null, true)
                 ->whereRaw("JSON_CONTAINS(tags, '\"{$tag}\"', '$')")
-                ->limit(100)
                 ->paginate(UserMaterial::DEFAULT_PER_PAGE);
         });
 
