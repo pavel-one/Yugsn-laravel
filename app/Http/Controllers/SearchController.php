@@ -10,7 +10,6 @@ class SearchController extends Controller
 {
     /**
      * Страница поиска
-     * TODO: Доработать [POST] и логику
      * @param Request $request
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
@@ -54,7 +53,6 @@ class SearchController extends Controller
 
     /**
      * Страница тега
-     * TODO: Доработать логику, сделать выборку JSON
      * @param string $tag
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
@@ -62,13 +60,14 @@ class SearchController extends Controller
     {
         $materials = \Cache::remember('tag_' . $tag, AppServiceProvider::DEFAULT_CACHE_TIMES, function () use ($tag) {
             return UserMaterial::findMini(null, true)
-                ->where('tags', 'like', '%' . $tag . '%')
+                ->whereRaw("JSON_CONTAINS(tags, '\"{$tag}\"', '$')")
                 ->limit(100)
                 ->paginate(UserMaterial::DEFAULT_PER_PAGE);
         });
 
-        return view('templates.search', [
-            'materials' => $materials
+        return view('templates.tag', [
+            'materials' => $materials,
+            'tag' => $tag
         ]);
     }
 }
