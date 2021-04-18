@@ -23,5 +23,25 @@ use Illuminate\Database\Eloquent\Model;
  */
 class MaterialTags extends Model
 {
-    use HasFactory;
+    protected $fillable = [
+        'name'
+    ];
+
+    /**
+     * Создает или возвращает существующий тег
+     * @param string $name
+     * @return MaterialTags
+     */
+    public static function createOrReturn(string $name): self
+    {
+        $query = self::whereName($name);
+
+        if ($query->exists()) {
+            return $query->first();
+        }
+
+        return self::create([
+            'name' => $name
+        ]);
+    }
 }

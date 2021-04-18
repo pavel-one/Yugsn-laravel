@@ -300,14 +300,28 @@ class UserMaterial extends Model implements HasMedia
 
     /**
      * Парсит теги материала
-     * @return bool
+     * TODO: Это должно происходить при сохранении ресурса и обновлении, событие? Очередь?
+     * @return \Illuminate\Support\Collection
      */
-    public function parseTags(): bool
+    public function parseTags(): \Illuminate\Support\Collection
     {
-        //TODO: Сделать парсинг тегов в тбалицу
-        //TODO: Это должно происходить при сохранении ресурса, событие? Очередь?
+        $collection = collect();
 
-        return true;
+        if (!$this->tags) {
+            return $collection;
+        }
+
+        if (!is_array($this->tags)) {
+            return $collection;
+        }
+
+        foreach ($this->tags as $tag) {
+            $obj = MaterialTags::createOrReturn($tag);
+
+            $collection->add($obj);
+        }
+
+        return $collection;
     }
 
     /**
