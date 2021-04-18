@@ -26,4 +26,5 @@ use Illuminate\Database\Eloquent\Model;
 class UserSubscriber extends Model
 {
     protected $fillable = ['email'];
+    //TODO: Уведомление при подписке
 }
