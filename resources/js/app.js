@@ -46,3 +46,54 @@ const autoCompleteJS = new autoComplete({
     },
 });
 
+Noty.overrideDefaults({
+    type: 'success',
+    layout   : 'topRight',
+    theme    : 'metroui',
+    animation: {
+        open : 'animate__animated animate__fadeInDown',
+        close: 'animate__animated animate__fadeOutDown'
+    }
+});
+
+$('.subscribe-form').submit(function (e) {
+    const url = $(this).attr('action');
+    axios.post(url, $(this).serialize())
+        .then(reponse => {
+            successNoty('Вы успешно подписались')
+            $(this).fadeOut();
+        })
+        .catch(error => {
+            errorNoty('Ошибка заполнения формы')
+            addErrors(this, error.response.data)
+        })
+    return false;
+})
+
+
+function addErrors(form, errors) {
+    const errorBlock = $(form).find('.errors');
+    errorBlock.html('<ul></ul>');
+    for (let key in errors.errors) {
+        errorBlock.find('ul').append(errors.errors[key][0])
+    }
+}
+
+function successNoty(text) {
+    return new Noty({
+        text: text,
+        timeout: 3500,
+        progressBar: true,
+        type: 'success'
+    }).show();
+}
+
+function errorNoty(text) {
+    return new Noty({
+        text: text,
+        timeout: 5000,
+        progressBar: true,
+        type: 'error'
+    }).show();
+}
+

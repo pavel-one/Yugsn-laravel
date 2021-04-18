@@ -5,6 +5,7 @@
 import $ from 'jquery'
 import aos from 'aos'
 
+window.Noty = require('noty');
 global.jQuery = $;
 global.$ = $;
 global.AOS = aos;
