@@ -40,15 +40,7 @@ class ParseTags extends Command
     public function handle(): bool
     {
         $this->info("Очищаем старые теги \n");
-        $query = MaterialTags::get();
-        $bar = $this->getOutput()->createProgressBar($query->count());
-        $bar->start();
-        $query->each(function ($item) use ($bar) {
-            /** @var MaterialTags $item */
-            $item->delete();
-            $bar->advance();
-        });
-        $bar->finish();
+        \DB::table('material_tags')->truncate();
 
         $this->info("Парсим новые теги \n");
         $query = UserMaterial::orderByDesc('id')->get();
