@@ -31,6 +31,8 @@ services:
     volumes:
       - ./:/var/www
       - ./docker/conf/php/project.ini:/usr/local/etc/php/conf.d/project.ini
+      - ~/.ssh/id_rsa.pub:/home/${DOCKER_USER}/.ssh/id_rsa.pub
+      - ~/.ssh/id_rsa:/home/${DOCKER_USER}/.ssh/id_rsa
   db:
     image: mysql:5.7
     restart: unless-stopped

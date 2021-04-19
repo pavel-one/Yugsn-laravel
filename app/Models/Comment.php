@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 
 /**
  * App\Models\Comment
@@ -19,6 +20,9 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $text
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property int $show
+ * @property-read \Illuminate\Database\Eloquent\Collection|Comment[] $children
+ * @property-read int|null $children_count
  * @method static \Illuminate\Database\Eloquent\Builder|Comment newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Comment newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Comment query()
@@ -28,6 +32,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Comment whereIp($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Comment whereParent($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Comment whereParentComment($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Comment whereShow($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Comment whereText($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Comment whereTheme($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Comment whereUpdatedAt($value)
@@ -38,4 +43,10 @@ use Illuminate\Database\Eloquent\Model;
 class Comment extends Model
 {
     protected $guarded = [];
+
+    public function children()
+    {
+        return $this->hasMany(Comment::class, 'parent_comment', 'id')
+            ->where('show', '=', true);
+    }
 }

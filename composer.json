@@ -9,8 +9,9 @@
     "license": "MIT",
     "repositories": [
         {
+            "type": "vcs",
             "url": "git@github.com:pavel-one/nova.git",
-            "type": "git"
+            "no-api": true
         }
     ],
     "require": {
@@ -22,12 +23,13 @@
         "guzzlehttp/guzzle": "^7.2",
         "laravel-lang/lang": "^9.0",
         "laravel/framework": "^8.12",
-        "laravel/nova": "*",
+        "laravel/nova": "dev-master",
         "laravel/tinker": "^2.5",
         "spatie/laravel-medialibrary": "^8.0.0",
         "spatie/laravel-sluggable": "^2.6"
     },
     "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.5",
         "barryvdh/laravel-ide-helper": "^2.9",
         "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",
