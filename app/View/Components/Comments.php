@@ -2,22 +2,21 @@
 
 namespace App\View\Components;
 
+use App\Models\UserMaterial;
 use Illuminate\View\Component;
 
 class Comments extends Component
 {
-    private $id;
-    private $class;
+    private $material;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($id, $class)
+    public function __construct($id)
     {
-        $this->id = $id;
-        $this->class = $class;
+        $this->material = UserMaterial::whereId($id)->first();
     }
 
     /**
@@ -27,6 +26,8 @@ class Comments extends Component
      */
     public function render()
     {
-        return view('components.comments');
+        return view('components.comments', [
+            'material' => $this->material
+        ]);
     }
 }

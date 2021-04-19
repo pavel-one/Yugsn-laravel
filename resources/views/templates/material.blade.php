@@ -60,7 +60,7 @@
                 <x-chunks.subscribe></x-chunks.subscribe>
 
                 <div class="clear"></div>
-                <x-comments id="{{$material->id}}" class="{{ get_class($material) }}"></x-comments>
+                <x-comments id="{{ $material->id }}"></x-comments>
             </div>
             <x-chunks.sidebar type="{{ $typeIndex }}"></x-chunks.sidebar>
         </div>

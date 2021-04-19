@@ -327,6 +327,34 @@ class UserMaterial extends Model implements HasMedia
         return $collection;
     }
 
+    public function addComment(string $text, int $parent, string $email = null, $parent_comment = null)
+    {
+        $user = \Auth::user();
+
+        $theme = 'material-' . $this->id;
+        $user_id = null;
+        $username = null;
+        $ip = $_SERVER['REMOTE_ADDR'];
+        $show = true;
+
+        if ($user instanceof User) {
+            $user_id = $user->id;
+            $username = $user->name;
+        }
+
+        return Comment::create([
+            'text' => $text,
+            'user_id' => $user_id,
+            'username' => $username,
+            'ip' => $ip,
+            'show' => $show,
+            'theme' => $theme,
+            'email' => $email,
+            'parent' => $parent,
+            'parent_comment' => $parent_comment,
+        ]);
+    }
+
     /**
      * Получает первый регион материала
      * @return null

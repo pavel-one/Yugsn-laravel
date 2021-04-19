@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class SubscribeController extends Controller
 {
+    /**
+     * Подписка на новости
+     * TODO: Запретить не ajax
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function store(Request $request)
     {
         $request->validate([

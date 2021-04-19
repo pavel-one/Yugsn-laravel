@@ -7,7 +7,7 @@
                     @csrf
                     <div class="mc4wp-form-fields">
                         <div class="mailchimp-widget-signup-form">
-                            <input type="text" name="email" placeholder="Введите Ваш e-mail" required/>
+                            <input type="email" name="email" placeholder="Введите Ваш e-mail" required/>
                             <button type="submit" class="btn">
                                 Подписка
                             </button>

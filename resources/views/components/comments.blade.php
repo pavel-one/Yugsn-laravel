@@ -1,3 +1,7 @@
+@php
+/** @var \App\Models\UserMaterial $material */
+@endphp
+
 <div id="comments" class="comments-area">
     <h2 class="comments-title">
         0 комментариев
@@ -8,26 +12,25 @@
 </div>
 
 <h3 class="comment-reply-title">Написать комментарий</h3>
-<form class="form ec-form" method="post" role="form">
+<form class="form comment-form ec-form" method="POST" action="{{ route('material.comment', $material->slug) }}" role="form">
+    @csrf
     <div class="form-group">
-        <label for="ec-user_name-resource-34738" class="control-label">Ваше имя</label>
-        <input type="text" name="user_name" class="form-control" id="ec-user_name-resource-34738"
-               value="" placeholder="Иван Юрьевич">
-        <span class="ec-error help-block" id="ec-user_name-error-resource-34738"></span>
+        <label class="control-label">Ваше имя (не обязательно)</label>
+        <input type="text" name="username" class="form-control"  placeholder="Иван Юрьевич">
+        <span class="field-error help-block" id="field-username"></span>
     </div>
 
     <div class="form-group">
-        <label for="ec-user_email-resource-34738" class="control-label">Электронная почта</label>
-        <input type="text" name="user_email" class="form-control" id="ec-user_email-resource-34738"
-               placeholder="ivan_y@mail.ru" value="">
-        <span class="ec-error help-block" id="ec-user_email-error-resource-34738"></span>
+        <label class="control-label">Электронная почта (не обязательно)</label>
+        <span class="small">Если хотите получать оповещения об ответах на комментарий</span>
+        <input type="text" name="email" class="form-control" placeholder="ivan_y@mail.ru">
+        <span class="field-error help-block" id="field-email"></span>
     </div>
 
     <div class="form-group">
         <label for="ec-text-resource-34738" class="control-label">Ваше сообщение</label>
-        <textarea type="text" name="text" class="form-control" rows="5"
-                  id="ec-text-resource-34738"></textarea>
-        <span class="ec-error help-block" id="ec-text-error-resource-34738"></span>
+        <textarea type="text" name="text" class="form-control" rows="5"></textarea>
+        <span class="field-error help-block" id="field-text"></span>
     </div>
 
 

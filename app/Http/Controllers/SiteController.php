@@ -20,28 +20,6 @@ class SiteController extends Controller
     }
 
     /**
-     * Страница категории или материала
-     * @param string $slug
-     * @return MaterialCategory|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model|object|void
-     */
-    public function categoryOrMaterial(string $slug)
-    {
-        $material = UserMaterial::whereSlug($slug)->first();
-        if ($material) {
-            return view('templates.material', [
-                'material' => $material
-            ]);
-        }
-
-        $category = MaterialCategory::whereSlug($slug)->first();
-        if ($category) {
-            return $category;
-        }
-
-        return abort(404);
-    }
-
-    /**
      * Страница ленты новостей
      * @return string
      */

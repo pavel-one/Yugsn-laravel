@@ -59,7 +59,7 @@ Noty.overrideDefaults({
 $('.subscribe-form').submit(function (e) {
     const url = $(this).attr('action');
     axios.post(url, $(this).serialize())
-        .then(reponse => {
+        .then(response => {
             successNoty('Вы успешно подписались')
             $(this).fadeOut();
         })
@@ -70,12 +70,32 @@ $('.subscribe-form').submit(function (e) {
     return false;
 })
 
+$('.comment-form').submit(function (e) {
+    const url = $(this).attr('action');
+    axios.post(url, $(this).serialize())
+        .then(response => {
+            successNoty('Комментарий будет опубликован после одобрения модератора')
+            $(this).fadeOut();
+        })
+        .catch(error => {
+            errorNoty('Ошибка заполнения формы')
+            addErrorsWithFields(this, error.response.data.errors)
+        })
+    return false;
+})
+
 
 function addErrors(form, errors) {
     const errorBlock = $(form).find('.errors');
     errorBlock.html('<ul></ul>');
     for (let key in errors.errors) {
         errorBlock.find('ul').append(errors.errors[key][0])
+    }
+}
+
+function addErrorsWithFields(form, errors) {
+    for (let key in errors) {
+        $('#field-'+key).text(errors[key][0]);
     }
 }
 
