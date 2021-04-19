@@ -2,11 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\MaterialCategory;
 use App\Models\User;
 use App\Models\UserMaterial;
-use App\Providers\AppServiceProvider;
-use Illuminate\Http\Request;
 
 class SiteController extends Controller
 {
@@ -53,12 +50,8 @@ class SiteController extends Controller
 
     public function test()
     {
-        dd(
-            UserMaterial::findMini(MaterialCategory::first())
-                ->whereRaw("JSON_CONTAINS(regions, '\"22\"', '$')")
-                ->limit(10)
-                ->get()
-                ->all()
-        );
+        $test = 1;
+        echo $test;
+//        phpinfo();
     }
 }

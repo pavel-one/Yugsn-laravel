@@ -21,6 +21,7 @@
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.2",
+        "itsgoingd/clockwork": "^5.0",
         "laravel-lang/lang": "^9.0",
         "laravel/framework": "^8.12",
         "laravel/nova": "dev-master",
