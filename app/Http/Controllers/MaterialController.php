@@ -57,6 +57,7 @@ class MaterialController extends Controller
             $material->id,
             $request->post('email'),
             $request->post('parent'),
+            $request->post('username')
         );
 
         return $this->api_success([], 'Успешно');

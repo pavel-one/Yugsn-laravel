@@ -41,7 +41,9 @@
                                 <div class="post-info-comments"
                                      style="display: flex; flex-direction: row; align-items: center">
                                     <i class="fa fa-comment-o" aria-hidden="true"></i>
-                                    <a href="#comments">0</a>
+                                    <a href="#comments">
+                                        {{ $material->comments()->count() }}
+                                    </a>
                                 </div>
 
                                 <div class="post-info-views"

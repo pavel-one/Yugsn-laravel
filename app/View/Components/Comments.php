@@ -8,6 +8,7 @@ use Illuminate\View\Component;
 class Comments extends Component
 {
     private $material;
+    private $comments;
 
     /**
      * Create a new component instance.
@@ -17,6 +18,7 @@ class Comments extends Component
     public function __construct($id)
     {
         $this->material = UserMaterial::whereId($id)->first();
+        $this->comments = $this->material->comments()->get()->all();
     }
 
     /**
@@ -27,7 +29,8 @@ class Comments extends Component
     public function render()
     {
         return view('components.comments', [
-            'material' => $this->material
+            'material' => $this->material,
+            'comments' => $this->comments
         ]);
     }
 }

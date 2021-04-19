@@ -327,13 +327,12 @@ class UserMaterial extends Model implements HasMedia
         return $collection;
     }
 
-    public function addComment(string $text, int $parent, string $email = null, $parent_comment = null)
+    public function addComment(string $text, int $parent, string $email = null, $parent_comment = null, $username = null)
     {
         $user = \Auth::user();
 
         $theme = 'material-' . $this->id;
         $user_id = null;
-        $username = null;
         $ip = $_SERVER['REMOTE_ADDR'];
         $show = true;
 
@@ -353,6 +352,21 @@ class UserMaterial extends Model implements HasMedia
             'parent' => $parent,
             'parent_comment' => $parent_comment,
         ]);
+    }
+
+    /**
+     * Комментарии
+     * @return Comment|Builder|\Illuminate\Database\Query\Builder
+     */
+    public function comments()
+    {
+        return Comment::whereParent($this->id)
+            ->where([
+                'theme' => 'material-' . $this->id,
+                'show' => true
+            ])
+            ->whereNull('parent_comment')
+            ->orderByDesc('created_at');
     }
 
     /**
