@@ -49,7 +49,7 @@ class MaterialController extends Controller
             'text' => 'required|string|min:3',
             'email' => 'nullable|email',
             'username' => 'nullable|string|min:3',
-            'parent' => 'integer'
+            'parent' => 'nullable|integer'
         ]);
 
         $material->addComment(
