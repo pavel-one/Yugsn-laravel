@@ -316,6 +316,9 @@ class UserMaterial extends Model implements HasMedia
         }
 
         foreach ($this->tags as $tag) {
+            if (!$tag) {
+                continue;
+            }
             $obj = MaterialTags::createOrReturn($tag);
 
             $collection->add($obj);
