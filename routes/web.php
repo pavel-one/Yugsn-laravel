@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SiteController;
@@ -22,6 +23,13 @@ Route::get('/news', [SiteController::class, 'news'])
     ->name('news');
 Route::get('/user/{id}', [SiteController::class, 'user'])
     ->name('user');
+
+Route::get('/admin/', [AuthController::class, 'index'])
+    ->name('login');
+Route::post('/admin/', [AuthController::class, 'login'])
+    ->name('login.auth');
+Route::get('/admin/logout', [AuthController::class, 'logout'])
+    ->name('login.logout');
 
 Route::get('/tag/{tag}', [SearchController::class, 'tags'])
     ->name('tag');

@@ -3,7 +3,7 @@
     /** @var \App\Models\MaterialCategory $category */
 @endphp
 
-<div class="saxon-postsgrid3-block-wrapper saxon-postsgrid3-block-wrapper-44448 saxon-block">
+<div class="saxon-postsgrid3-block-wrapper saxon-block">
     <div class="container">
         <div class="row">
             <div class="col-md-12 saxon-block-title">
@@ -15,7 +15,7 @@
             </div>
             @foreach($materials as $material)
                 <div class="col-md-3">
-                    <div class="saxon-overlay-alt-post saxon-post saxon-post-invert" data-aos="fade-up">
+                    <div class="saxon-overlay-alt-post saxon-post society-mini saxon-post-invert" data-aos="fade-up">
                         <div class="saxon-post-wrapper-inner">
                             <div class="saxon-post-image"
                                  style="background-image: url({{$material->getFirstMediaUrl('default', 'thumb-small-vertical')}});">

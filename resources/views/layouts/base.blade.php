@@ -10,5 +10,8 @@
 @yield('content')
 
 <x-footer></x-footer>
+@if(Auth::user() && Auth::user()->isSudo())
+    @include('components.admin_block')
+@endif
 </body>
 </html>

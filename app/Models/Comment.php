@@ -23,6 +23,7 @@ use Illuminate\Support\Collection;
  * @property int $show
  * @property-read \Illuminate\Database\Eloquent\Collection|Comment[] $children
  * @property-read int|null $children_count
+ * @property-read \App\Models\User|null $user
  * @method static \Illuminate\Database\Eloquent\Builder|Comment newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Comment newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Comment query()

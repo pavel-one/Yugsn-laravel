@@ -19,6 +19,7 @@ use Illuminate\Notifications\Notifiable;
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property string|null $photo
  * @property string|null $description
+ * @property int $is_admin
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\UserMaterial[] $materials
  * @property-read int|null $materials_count
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
@@ -31,6 +32,7 @@ use Illuminate\Notifications\Notifiable;
  * @method static \Illuminate\Database\Eloquent\Builder|User whereDescription($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEmail($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereIsAdmin($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePhoto($value)
@@ -79,5 +81,10 @@ class User extends Authenticatable
     public function getAuthorName(): string
     {
         return $this->name ?? 'Скрыто';
+    }
+
+    public function isSudo(): bool
+    {
+        return (bool) $this->is_admin;
     }
 }
