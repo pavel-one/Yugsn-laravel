@@ -16,7 +16,7 @@
         <div class="row">
             <div class="col-md-8">
                 <div class="blog-post blog-post-single clearfix">
-                    <article
+                    <article id="editorjs"
                         class="post type-post status-publish format-standard has-post-thumbnail hentry category-lifestyle tag-business tag-design tag-finance tag-phones tag-technology">
                         <div class="post-content-wrapper">
                             <div class="post-content clearfix">
