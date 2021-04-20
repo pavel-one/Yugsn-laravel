@@ -70,17 +70,29 @@ $('.subscribe-form').submit(function (e) {
     return false;
 })
 
-$('.comment-form').submit(function (e) {
+$(document).on('submit', '.comment-form', function (e) {
     const url = $(this).attr('action');
     axios.post(url, $(this).serialize())
         .then(response => {
-            successNoty('Комментарий будет опубликован после одобрения модератора')
-            $(this).fadeOut();
+            if (!response.data.status) {
+                errorNoty(response.data.message);
+            } else {
+                successNoty(response.data.message)
+                $(this).fadeOut();
+            }
         })
         .catch(error => {
             errorNoty('Ошибка заполнения формы')
             addErrorsWithFields(this, error.response.data.errors)
         })
+    return false;
+})
+
+$('.reply').click(function (e) {
+    const parent = $(this).closest('.comment-wrapper');
+    const id = $(this).data('id');
+    $('.reply-form').clone().appendTo(parent).fadeIn();
+    $(this).closest('.comment-wrapper').find('[name=parent]').val(id)
     return false;
 })
 
@@ -95,7 +107,7 @@ function addErrors(form, errors) {
 
 function addErrorsWithFields(form, errors) {
     for (let key in errors) {
-        $('#field-'+key).text(errors[key][0]);
+        $(form).find('#field-'+key).text(errors[key][0]);
     }
 }
 

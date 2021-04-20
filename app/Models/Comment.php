@@ -49,4 +49,9 @@ class Comment extends Model
         return $this->hasMany(Comment::class, 'parent_comment', 'id')
             ->where('show', '=', true);
     }
+
+    public function user()
+    {
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
 }

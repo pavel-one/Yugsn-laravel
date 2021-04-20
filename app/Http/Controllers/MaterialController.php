@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use App\Models\MaterialCategory;
 use App\Models\User;
 use App\Models\UserMaterial;
@@ -52,6 +53,12 @@ class MaterialController extends Controller
             'parent' => 'nullable|integer'
         ]);
 
+        if ($request->post('parent')) {
+            if (!Comment::whereId($request->post('parent'))->exists()) {
+                return $this->api_error('Такого комментария не существует');
+            }
+        }
+
         $material->addComment(
             $request->post('text'),
             $material->id,
@@ -60,6 +67,6 @@ class MaterialController extends Controller
             $request->post('username')
         );
 
-        return $this->api_success([], 'Успешно');
+        return $this->api_success([], 'Комментарий будет опубликован после проверки модератором');
     }
 }
