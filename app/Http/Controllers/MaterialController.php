@@ -58,6 +58,7 @@ class MaterialController extends Controller
 
     /**
      * Получает мета теги урла
+     * TODO: Сделать
      * @param string $slug
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
