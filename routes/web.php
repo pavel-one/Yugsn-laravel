@@ -46,6 +46,13 @@ Route::get('/test', [SiteController::class, 'test']); //TODO: Удалить
 Route::get('/{slug}', [MaterialController::class, 'view'])
     ->name('category.material');
 
+//TODO: Только админ
+Route::post('/{slug}/update', [MaterialController::class, 'update'])
+    ->name('material.update');
+Route::get('/{slug}/url', [MaterialController::class, 'fetchUrl'])
+    ->name('material.fetchUrl');
+
 Route::post('/{slug}/comment', [MaterialController::class, 'comment'])
     ->name('material.comment');
+
 

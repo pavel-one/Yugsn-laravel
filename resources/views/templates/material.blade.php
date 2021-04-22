@@ -16,12 +16,17 @@
         <div class="row">
             <div class="col-md-8">
                 <div class="blog-post blog-post-single clearfix">
-                    <article id="editorjs"
+                    <article
                         class="post type-post status-publish format-standard has-post-thumbnail hentry category-lifestyle tag-business tag-design tag-finance tag-phones tag-technology">
                         <div class="post-content-wrapper">
                             <div class="post-content clearfix">
                                 <div class="entry-content">
-                                    {!! $material->content !!}
+                                    @if(Auth::user() && Auth::user()->isSudo())
+                                        <div id="editorjs" data-json='{{ json_encode($material->json_content) }}'></div>
+                                        <button class="btn btn-primary" id="editorjs-save">Сохранить</button>
+                                    @else
+                                        {!! $material->getFullContent() !!}
+                                    @endif
                                 </div>
 
                                 @include('components.chunks.share')
@@ -45,7 +50,7 @@
                                      style="display: flex; flex-direction: row; align-items: center">
                                     <i class="fa fa-comment-o" aria-hidden="true"></i>
                                     <a href="#comments">
-                                        {{ $material->comments()->count() }}
+                                        {{ $material->getCommentsCount() }}
                                     </a>
                                 </div>
 

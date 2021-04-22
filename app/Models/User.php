@@ -20,6 +20,7 @@ use Illuminate\Notifications\Notifiable;
  * @property string|null $photo
  * @property string|null $description
  * @property int $is_admin
+ * @property string|null $remember_token
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\UserMaterial[] $materials
  * @property-read int|null $materials_count
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
@@ -36,6 +37,7 @@ use Illuminate\Notifications\Notifiable;
  * @method static \Illuminate\Database\Eloquent\Builder|User whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePhoto($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
  * @mixin \Eloquent
  */

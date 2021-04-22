@@ -4,22 +4,32 @@ import List from '@editorjs/list';
 import Image from '@editorjs/image'
 import Link from '@editorjs/link'
 import Quote from '@editorjs/quote'
+import axios from "axios";
 
 const editor = new EditorJS({
-    /**
-     * Id of Element that should contain the Editor
-     */
     holder: 'editorjs',
-
-    /**
-     * Available Tools list.
-     * Pass Tool's class or Settings object for each Tool you want to use
-     */
+    data: $('#editorjs').data('json'),
     tools: {
         header: Header,
         list: List,
         quote: Quote,
         image: Image,
-        link: Link
+        link: {
+            class: Link,
+            config: {
+                endpoint: window.location.href + '/url',
+            }
+        }
     },
+})
+
+
+$('#editorjs-save').click(async function () {
+    const data = await editor.save();
+
+    const response = await axios.post(window.location.href + '/update', {
+        data: data
+    });
+
+
 })

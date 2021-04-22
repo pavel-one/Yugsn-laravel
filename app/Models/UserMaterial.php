@@ -33,6 +33,7 @@ use Spatie\Sluggable\SlugOptions;
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property array|null $regions
+ * @property mixed|null $json_content
  * @property-read \App\Models\MaterialCategory $category
  * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection|Media[] $media
  * @property-read int|null $media_count
@@ -45,6 +46,7 @@ use Spatie\Sluggable\SlugOptions;
  * @method static Builder|UserMaterial whereContent($value)
  * @method static Builder|UserMaterial whereCreatedAt($value)
  * @method static Builder|UserMaterial whereId($value)
+ * @method static Builder|UserMaterial whereJsonContent($value)
  * @method static Builder|UserMaterial whereLongTitle($value)
  * @method static Builder|UserMaterial wherePublished($value)
  * @method static Builder|UserMaterial wherePublishedTime($value)
@@ -63,7 +65,8 @@ class UserMaterial extends Model implements HasMedia
 
     protected $casts = [
         'regions' => 'array',
-        'tags' => 'array'
+        'tags' => 'array',
+        'json_content' => 'array'
     ];
 
     public const DEFAULT_PER_PAGE = 18;
@@ -227,6 +230,30 @@ class UserMaterial extends Model implements HasMedia
     public function getAuthorPhoto(): string
     {
         return 'https://www.gravatar.com/avatar/89d60c38d59a44e98491064af163ec68?s=28&amp;d=mm';
+    }
+
+    /**
+     * TODO: Сделать
+     * @return int
+     */
+    public function getCommentsCount(): int
+    {
+        return 13;
+    }
+
+    /**
+     * Отдает контент материала
+     * TODO: Сделать
+     * @return string
+     */
+    public function getFullContent(): string
+    {
+        if (!$this->json_content) {
+            return $this->content ?? 'Статья в разработке';
+        }
+
+        return $this->content;
+//        dd($this->json_content);
     }
 
     /**
