@@ -42,7 +42,6 @@ Route::post('/search/api/', [SearchController::class, 'searchApi'])
 Route::post('/subscribe/', [SubscribeController::class, 'store'])
     ->name('subscribe.add');
 
-//TODO: Только админ
 Route::middleware(OnlySudo::class)->group(function () {
     Route::get('/test', [SiteController::class, 'test']);
 
@@ -51,6 +50,8 @@ Route::middleware(OnlySudo::class)->group(function () {
         ->name('material.update');
     Route::get('/{slug}/url', [MaterialController::class, 'fetchUrl'])
         ->name('material.fetchUrl');
+    Route::get('/{slug}/preview', [MaterialController::class, 'preview'])
+        ->name('material.preview');
 });
 
 Route::get('/{slug}', [MaterialController::class, 'view'])

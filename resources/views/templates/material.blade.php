@@ -21,7 +21,7 @@
                         <div class="post-content-wrapper">
                             <div class="post-content clearfix">
                                 <div class="entry-content">
-                                    @if(Auth::user() && Auth::user()->isSudo())
+                                    @if($sudo)
                                         <div id="editorjs" data-json='{{ json_encode($material->json_content) }}'></div>
                                         <button class="btn btn-primary" id="editorjs-save">Сохранить</button>
                                     @else

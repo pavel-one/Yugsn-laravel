@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Providers\RouteServiceProvider;
+use App\Services\Editor;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -249,12 +250,14 @@ class UserMaterial extends Model implements HasMedia
      */
     public function getFullContent(): string
     {
-        if (!$this->json_content) {
-            return $this->content ?? 'Статья в разработке';
+        $content = $this->content;
+
+        if ($this->json_content && count($this->json_content['blocks'])) {
+            $editor = new Editor($this->json_content);
+            $content = $editor->render();
         }
 
-        return $this->content;
-//        dd($this->json_content);
+        return $content ?? 'Статья в разработке';
     }
 
     /**

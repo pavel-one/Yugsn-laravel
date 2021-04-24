@@ -21,13 +21,32 @@ class MaterialController extends Controller
         $material = UserMaterial::whereSlug($slug)->first();
         if ($material) {
             return view('templates.material', [
-                'material' => $material
+                'material' => $material,
+                'sudo' => \Auth::user() && \Auth::user()->isSudo()
             ]);
         }
 
         $category = MaterialCategory::whereSlug($slug)->first();
         if ($category) {
             return $category;
+        }
+
+        return abort(404);
+    }
+
+    /**
+     * Предпросмотр материала
+     * @param string $slug
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|void
+     */
+    public function preview(string $slug)
+    {
+        $material = UserMaterial::whereSlug($slug)->first();
+        if ($material) {
+            return view('templates.material', [
+                'material' => $material,
+                'sudo' => false
+            ]);
         }
 
         return abort(404);
@@ -91,7 +110,6 @@ class MaterialController extends Controller
 
     /**
      * Создание комментария
-     * TODO: Запретить не ajax
      * @param string $slug
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse|void
