@@ -133,3 +133,12 @@ form .errors {
         }
     }
 }
+
+.btn.btn-secondary {
+    background-color: #80b5ff;
+    transition: .25s;
+    border-color: #80b5ff;
+    &:hover {
+        background-color: #000000;
+    }
+}

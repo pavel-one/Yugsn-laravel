@@ -76,6 +76,33 @@ class MaterialController extends Controller
     }
 
     /**
+     * @throws \Spatie\MediaLibrary\MediaCollections\Exceptions\FileDoesNotExist
+     * @throws \Spatie\MediaLibrary\MediaCollections\Exceptions\FileIsTooBig
+     */
+    public function upload(string $slug, Request $request)
+    {
+        /** @var UserMaterial|null $material */
+        $material = UserMaterial::whereSlug($slug)->first();
+        if (!$material) {
+            abort(404);
+        }
+
+        if (!$request->file('image')) {
+            return $this->api_error('Не передан файл');
+        }
+
+        $media = $material->addMedia($request->file('image'))
+            ->toMediaCollection(UserMaterial::MATERIAL_IMAGES_COLLECTION);
+
+        return response()->json([
+            'success' => 1,
+            'file' => [
+                'url' => $media->getUrl()
+            ]
+        ]);
+    }
+
+    /**
      * Получает мета теги урла
      * @param string $slug
      * @param Request $request
@@ -100,7 +127,7 @@ class MaterialController extends Controller
             'success' => 1,
             'meta' => [
                 'title' => $title->text,
-                'description' => $description->content,
+                'description' => $description ? $description->content : '',
                 'image' => [
                     'url' => $icon,
                 ]

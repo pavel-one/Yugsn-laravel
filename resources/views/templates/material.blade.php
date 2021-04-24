@@ -23,7 +23,13 @@
                                 <div class="entry-content">
                                     @if($sudo)
                                         <div id="editorjs" data-json='{{ json_encode($material->json_content) }}'></div>
-                                        <button class="btn btn-primary" id="editorjs-save">Сохранить</button>
+                                        <div class="btn-group">
+                                            <button class="btn btn-primary" id="editorjs-save">Сохранить</button>
+                                            <a target="_blank" href="{{ route('material.preview', $material->slug) }}"
+                                               class="btn btn-secondary">
+                                                Предпросмотр
+                                            </a>
+                                        </div>
                                     @else
                                         {!! $material->getFullContent() !!}
                                     @endif

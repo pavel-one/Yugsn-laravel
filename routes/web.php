@@ -48,8 +48,13 @@ Route::middleware(OnlySudo::class)->group(function () {
 
     Route::post('/{slug}/update', [MaterialController::class, 'update'])
         ->name('material.update');
+
+    Route::post('/{slug}/upload', [MaterialController::class, 'upload'])
+        ->name('material.upload');
+
     Route::get('/{slug}/url', [MaterialController::class, 'fetchUrl'])
         ->name('material.fetchUrl');
+
     Route::get('/{slug}/preview', [MaterialController::class, 'preview'])
         ->name('material.preview');
 });

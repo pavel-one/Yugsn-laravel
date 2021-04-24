@@ -95,6 +95,8 @@ class UserMaterial extends Model implements HasMedia
         'mini-vertical' => [330, 291],
     ];
 
+    public const MATERIAL_IMAGES_COLLECTION = 'materials-images';
+
     protected $dates = [
         'published_time',
     ];
