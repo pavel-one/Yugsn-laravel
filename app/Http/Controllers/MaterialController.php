@@ -58,7 +58,6 @@ class MaterialController extends Controller
 
     /**
      * Получает мета теги урла
-     * TODO: Сделать
      * @param string $slug
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
@@ -68,13 +67,23 @@ class MaterialController extends Controller
         $dom = new Dom();
         $dom->loadFromUrl($request->get('url'));
 
+        $parseUrl = parse_url($request->get('url'));
+
+        $title = $dom->find('title')[0] ?? null;
+        $description = $dom->find('[name=description]')[0] ?? null;
+
+        $icon = $dom->find('[rel=icon]');
+        if ($count = $icon->count()) {
+            $icon = $parseUrl['scheme'].'://'.$parseUrl['host'].$icon[$count - 1]->href;
+        }
+
         return response()->json([
             'success' => 1,
             'meta' => [
-                'title' => $dom->find('title')[0] ? $dom->find('title')[0]->text : '',
-                'description' => $dom->find('[name=description]')[0] ? $dom->find('[name=description]')[0]->content : '',
+                'title' => $title->text,
+                'description' => $description->content,
                 'image' => [
-                    'url' => $dom->find('[rel=icon]')[count($dom->find('[rel=icon]')) - 1] ? $request->get('url').$dom->find('[rel=icon]')[count($dom->find('[rel=icon]')) - 1]->href : '',
+                    'url' => $icon,
                 ]
             ]
         ]);
