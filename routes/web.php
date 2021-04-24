@@ -5,6 +5,7 @@ use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\SubscribeController;
+use App\Http\Middleware\OnlySudo;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -41,16 +42,19 @@ Route::post('/search/api/', [SearchController::class, 'searchApi'])
 Route::post('/subscribe/', [SubscribeController::class, 'store'])
     ->name('subscribe.add');
 
-Route::get('/test', [SiteController::class, 'test']); //TODO: Удалить
+//TODO: Только админ
+Route::middleware(OnlySudo::class)->group(function () {
+    Route::get('/test', [SiteController::class, 'test']);
+
+
+    Route::post('/{slug}/update', [MaterialController::class, 'update'])
+        ->name('material.update');
+    Route::get('/{slug}/url', [MaterialController::class, 'fetchUrl'])
+        ->name('material.fetchUrl');
+});
 
 Route::get('/{slug}', [MaterialController::class, 'view'])
     ->name('category.material');
-
-//TODO: Только админ
-Route::post('/{slug}/update', [MaterialController::class, 'update'])
-    ->name('material.update');
-Route::get('/{slug}/url', [MaterialController::class, 'fetchUrl'])
-    ->name('material.fetchUrl');
 
 Route::post('/{slug}/comment', [MaterialController::class, 'comment'])
     ->name('material.comment');

@@ -233,12 +233,13 @@ class UserMaterial extends Model implements HasMedia
     }
 
     /**
-     * TODO: Сделать
      * @return int
      */
     public function getCommentsCount(): int
     {
-        return 13;
+        $count = $this->comments()->count();
+
+        return $count;
     }
 
     /**

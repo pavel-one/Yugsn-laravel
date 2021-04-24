@@ -50,8 +50,6 @@ class SiteController extends Controller
 
     public function test()
     {
-        $test = 1;
-        echo $test;
-//        phpinfo();
+        phpinfo();
     }
 }
