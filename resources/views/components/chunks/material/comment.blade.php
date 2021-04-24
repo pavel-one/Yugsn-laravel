@@ -3,7 +3,7 @@
     /** @var \App\Models\UserMaterial $material */
 @endphp
 
-<div class="comment-wrapper">
+<div class="comment-wrapper aos-init aos-animate" data-aos="fade-up">
     <div class="comment-top">
         <div class="name">
             {{ $comment->username ?? 'Анонимно' }}

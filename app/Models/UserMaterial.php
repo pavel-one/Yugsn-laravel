@@ -245,7 +245,6 @@ class UserMaterial extends Model implements HasMedia
 
     /**
      * Отдает контент материала
-     * TODO: Сделать
      * @return string
      */
     public function getFullContent(): string
