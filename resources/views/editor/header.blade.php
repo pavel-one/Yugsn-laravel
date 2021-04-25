@@ -1,1 +1,1 @@
-<h{{$level}}>{{ $text }}</h{{$level}}>
+<h{{$level}}>{!! $text !!}</h{{$level}}>

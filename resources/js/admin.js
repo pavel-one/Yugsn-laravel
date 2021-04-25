@@ -1,10 +1,17 @@
-import EditorJS from '@editorjs/editorjs';
-import Header from '@editorjs/header';
-import List from '@editorjs/list';
+import EditorJS from '@editorjs/editorjs'
+import Header from '@editorjs/header'
+import List from '@editorjs/list'
 import Image from '@editorjs/image'
 import Link from '@editorjs/link'
 import Quote from '@editorjs/quote'
-import axios from "axios";
+import axios from "axios"
+import Marker from '@editorjs/marker'
+import Underline from '@editorjs/underline'
+import Hyperlink from 'editorjs-hyperlink'
+import Color from 'editorjs-text-color-plugin'
+import Delimiter from '@editorjs/delimiter'
+import Carousel from './vendor/carousel-editorjs-master/dist/bundle'
+
 
 const editor = new EditorJS({
     holder: 'editorjs',
@@ -13,6 +20,11 @@ const editor = new EditorJS({
         header: Header,
         list: List,
         quote: Quote,
+        marker: Marker,
+        underline: Underline,
+        hyperlink: Hyperlink,
+        color: Color,
+        delimiter: Delimiter,
         link: {
             class: Link,
             config: {
@@ -41,7 +53,29 @@ const editor = new EditorJS({
                     },
                 }
             }
-        }
+        },
+        carousel: {
+            class: Carousel,
+            config: {
+                endpoints: {
+                    byFile: window.location.href + '/upload',
+                },
+                uploader: {
+                    uploadByFile(file){
+                        const formData = new FormData();
+                        formData.append("image", file);
+                        // your own uploading logic here
+                        return axios.post(window.location.href + '/upload', formData, {
+                            headers: {
+                                'Content-Type': 'multipart/form-data'
+                            }
+                        }).then(response => {
+                            return response.data;
+                        });
+                    },
+                }
+            }
+        },
     },
 })
 

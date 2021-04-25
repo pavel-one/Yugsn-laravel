@@ -1,5 +1,6 @@
 import autoComplete from "@tarekraafat/autocomplete.js"
 import axios from 'axios';
+import Slick from 'slick-carousel'
 
 require('./bootstrap');
 
@@ -96,6 +97,13 @@ $('.reply').click(function (e) {
     return false;
 })
 
+$('.content-slider').slick({
+    // slidesToShow: 3,
+    // slidesToScroll: 1,
+    dots: true,
+    prevArrow: '<div class="arrow prev"><i class="fa fa-angle-left" aria-hidden="true"></i></div>',
+    nextArrow: '<div class="arrow next"><i class="fa fa-angle-right" aria-hidden="true"></i></div>'
+});
 
 function addErrors(form, errors) {
     const errorBlock = $(form).find('.errors');

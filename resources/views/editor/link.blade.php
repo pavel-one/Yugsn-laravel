@@ -5,11 +5,11 @@
             <div class="link-tool__image" style="background-image: url({{$meta['image']['url']}});"></div>
         @endif
         <div class="link-tool__title">
-            {{ $meta['title'] }}
+            {!! $meta['title'] !!}
         </div>
         @if(isset($meta['description']))
             <p class="link-tool__description">
-                {{ $meta['description'] }}
+                {!! $meta['description'] !!}
             </p>
         @endif
         <span class="link-tool__anchor">{{ $link }}</span>

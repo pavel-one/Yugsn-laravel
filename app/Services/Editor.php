@@ -16,6 +16,12 @@ class Editor
         $out = '';
 
         foreach ($this->data as $item) {
+            if ($item['type'] === 'carousel') {
+                $out .= view("editor.{$item['type']}", [
+                    'images' => $item['data']
+                ]);
+                continue;
+            }
             $out .= view("editor.{$item['type']}", $item['data']);
         }
 

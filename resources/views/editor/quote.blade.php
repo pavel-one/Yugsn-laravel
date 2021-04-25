@@ -1,8 +1,8 @@
 <blockquote style="text-align: {{$alignment}}" class="wp-block-quote">
     <p>
-        {{ $text }}
+        {!! $text !!}
     </p>
     <cite>
-        {{ $caption }}
+        {!! $caption !!}
     </cite>
 </blockquote>

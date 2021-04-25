@@ -10,7 +10,7 @@
 <{{$tag}}>
     @foreach($items as $item)
         <li>
-            {{ $item }}
+            {!! $item !!}
         </li>
     @endforeach
 </{{$tag}}>
