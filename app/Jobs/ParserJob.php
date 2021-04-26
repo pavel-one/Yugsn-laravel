@@ -53,8 +53,9 @@ class ParserJob implements ShouldQueue
         UserMaterial::reguard();
 
         try {
-            $materialObject->clearMediaCollection();
-            $materialObject->addMediaFromUrl($this->service->base_url . $this->apiData['image'])->toMediaCollection();
+            $materialObject->clearMediaCollection(UserMaterial::MATERIAL_FIRST_IMAGES_COLLECTION);
+            $materialObject->addMediaFromUrl($this->service->base_url . $this->apiData['image'], 'image/*')
+                ->toMediaCollection('preview');
         } catch (\Exception $e) {
             $this->error('ID: ' . $materialObject->id . ' - ' . $e->getMessage());
         }

@@ -39,7 +39,7 @@ class Columnistic extends Component
      */
     public function render()
     {
-        if (!$this->materials) {
+        if (!$this->materials || !$this->category) {
             return null;
         }
         return view('components.index.columnistic', [

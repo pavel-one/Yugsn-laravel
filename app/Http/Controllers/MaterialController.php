@@ -92,7 +92,10 @@ class MaterialController extends Controller
         }
 
         $media = $material->addMedia($request->file('image'))
-            ->toMediaCollection(UserMaterial::MATERIAL_IMAGES_COLLECTION);
+            ->toMediaCollection(
+                UserMaterial::MATERIAL_IMAGES_COLLECTION,
+                UserMaterial::MATERIAL_DISK_CONTENT
+            );
 
         return response()->json([
             'success' => 1,

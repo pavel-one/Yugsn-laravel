@@ -72,6 +72,11 @@ class UserMaterial extends Model implements HasMedia
 
     public const DEFAULT_PER_PAGE = 18;
 
+    public const MATERIAL_DISK_CONTENT = 'materials-content';
+
+    public const MATERIAL_IMAGES_COLLECTION = 'materials-images';
+    public const MATERIAL_FIRST_IMAGES_COLLECTION = 'preview';
+
     public const MINI_FIELDS = [
         'id',
         'user_id',
@@ -94,8 +99,6 @@ class UserMaterial extends Model implements HasMedia
         'mini' => [110, 130],
         'mini-vertical' => [330, 291],
     ];
-
-    public const MATERIAL_IMAGES_COLLECTION = 'materials-images';
 
     protected $dates = [
         'published_time',
@@ -304,8 +307,12 @@ class UserMaterial extends Model implements HasMedia
     {
         foreach (self::THUMB_SIZES as $name => $size) {
             $this->addMediaConversion("thumb-$name")
-                ->fit(Manipulations::FIT_CROP, $size[0], $size[1]);
+                ->fit(Manipulations::FIT_CROP, $size[0], $size[1])
+                ->performOnCollections(self::MATERIAL_FIRST_IMAGES_COLLECTION)
+                ->queued();
         }
+
+
     }
 
     /**

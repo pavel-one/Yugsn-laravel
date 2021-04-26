@@ -53,6 +53,12 @@ return [
             'url' => env('APP_URL').'/articles'
         ],
 
+        \App\Models\UserMaterial::MATERIAL_DISK_CONTENT => [
+            'driver' => 'local',
+            'root' => storage_path('app/articles-content'),
+            'url' => env('APP_URL').'/articles-content'
+        ],
+
     ],
 
     /*
